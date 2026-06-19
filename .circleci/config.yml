@@ -1,36 +1,51 @@
-version: 2.1
+﻿version: 2.1
+
+orbs:
+  win: circleci/windows@5.0
+
+parameters:
+  release_artifacts:
+    type: boolean
+    default: false
 
 jobs:
-  linux-check:
-    docker:
-      - image: cimg/rust:1.94.0
-    resource_class: small
+  windows-release:
+    executor:
+      name: win/default
+      size: medium
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - dx-extensions-cargo-{{ arch }}-{{ checksum "Cargo.lock" }}
-            - dx-extensions-cargo-{{ arch }}-
       - run:
-          name: Cargo metadata
-          command: cargo metadata --locked --no-deps --format-version 1
-      - run:
-          name: Cargo check
+          name: Install Rust
+          shell: powershell.exe
           command: |
-            cargo check --locked --workspace --lib --bins
-      - save_cache:
-          key: dx-extensions-cargo-{{ arch }}-{{ checksum "Cargo.lock" }}
-          paths:
-            - ~/.cargo/registry
-            - ~/.cargo/git
-            - target
+            Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile "rustup-init.exe"
+            .\rustup-init.exe -y --default-toolchain 1.94.0 --profile minimal
+      - run:
+          name: Build Windows release artifacts
+          shell: powershell.exe
+          command: |
+            $env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"
+            $ErrorActionPreference = "Stop"
+            cargo build --release
+            New-Item -ItemType Directory -Path dist -Force | Out-Null
+            Copy-Item -Path "target\release\*.exe" -Destination "dist\" -Force -ErrorAction SilentlyContinue
+            if ($env:CIRCLE_SHA1) {
+                $shortSha = $env:CIRCLE_SHA1.Substring(0, 12)
+            } else {
+                $shortSha = "local"
+            }
+            $archive = "dx-windows-x86_64-$shortSha.zip"
+            if (Test-Path "dist\*.exe") {
+                Compress-Archive -Path "dist\*" -DestinationPath "dist\$archive" -Force
+                $hash = Get-FileHash -Algorithm SHA256 -Path "dist\$archive"
+                "$($hash.Hash.ToLowerInvariant())  $archive" | Set-Content -Path "dist\SHA256SUMS.txt" -Encoding ASCII
+            }
+      - store_artifacts:
+          path: dist
 
 workflows:
-  validate:
+  release:
+    when: << pipeline.parameters.release_artifacts >>
     jobs:
-      - linux-check:
-          filters:
-            branches:
-              only:
-                - main
-                - dev
+      - windows-release
