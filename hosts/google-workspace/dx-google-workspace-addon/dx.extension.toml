@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.google-workspace.command-center"
+name = "DX Google Workspace Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Google Workspace add-on for DX status, asset search, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["google-workspace"]
+platforms = ["web"]
+architectures = ["wasm32"]
+
+[entrypoint]
+transport = "http"
+command = "dx-cloud-service"
+args = []
+cwd = "${host.workspace-file}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "oauth-user-approved"
+signature = "development-unsigned"
+sandbox = "google-workspace-addon"
+network = "restricted-to-google-workspace"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "google.workspace.card"
+required = true
+scope = ["add-on-card", "homepage-trigger"]
+reason = "Render explicit Workspace Add-on cards for user-invoked DX command plans."
+
+[[capabilities]]
+id = "google.workspace.file.metadata"
+required = true
+scope = ["coarse-file-metadata"]
+reason = "Reserve coarse contextual metadata for OAuth-approved Workspace host context."
+
+[[capabilities]]
+id = "cloud_service.connect"
+required = true
+scope = ["dx-cloud-service"]
+reason = "Future OAuth-reviewed cloud service bridge for status and asset requests."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose metadata-only DX receipt references through the cloud-service bridge."
+
+[[host_actions]]
+id = "dx.google-workspace.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the future Google Workspace cloud-service bridge."
+operation = "dx.status"
+transport = "cloud-service"
+input = "none"
+output = "workspace-card"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["google.workspace.card", "cloud_service.connect"]
+
+[[host_actions]]
+id = "dx.google-workspace.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX icon, font, and media asset search through the future cloud-service bridge."
+operation = "dx.assets.search"
+transport = "cloud-service"
+input = "text"
+output = "workspace-card"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["google.workspace.card", "google.workspace.file.metadata", "cloud_service.connect"]
+
+[[host_actions]]
+id = "dx.google-workspace.show_receipts"
+group = "receipts"
+label = "Show DX Receipts Path"
+description = "Show a metadata-only DX receipt path reference from Google Workspace."
+operation = "receipt.showPath"
+transport = "cloud-service"
+input = "none"
+output = "workspace-card"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["google.workspace.card", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.google-workspace.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.unity-editor.command-center"
+name = "DX Unity Editor Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Unity Editor command center for DX status, asset search, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["unity-editor"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.project}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "unity-editor-extension"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "unity.editor.menu"
+required = true
+scope = ["editor-menu", "editor-window"]
+reason = "Expose explicit Unity Editor menu and window surfaces for user-invoked DX command plans."
+
+[[capabilities]]
+id = "unity.project.read"
+required = true
+scope = ["project-metadata"]
+reason = "Read coarse project context when the Unity Editor host context is available."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for status and asset requests when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Unity Editor host surface."
+
+[[host_actions]]
+id = "dx.unity-editor.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the future Unity local-service bridge."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "editor-window"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["unity.editor.menu", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.unity-editor.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX icon, font, and media asset search through the future local-service bridge."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "editor-window"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["unity.editor.menu", "unity.project.read", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.unity-editor.show_receipts"
+group = "receipts"
+label = "Show DX Receipts Path"
+description = "Show the local DX receipt folder path from Unity Editor."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "editor-window"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["unity.editor.menu", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.unity-editor.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

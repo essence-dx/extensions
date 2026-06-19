@@ -1,0 +1,110 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.obsidian.command-center"
+name = "DX Obsidian Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Obsidian command-center bridge for DX status, diagnostics, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["obsidian"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "process"
+command = "dx"
+args = []
+cwd = "${host.vault}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "argv"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "obsidian-desktop-plugin"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "process.spawn"
+required = true
+scope = ["dx"]
+reason = "Run fixed DX CLI commands from Obsidian with shell-free argv."
+
+[[capabilities]]
+id = "clipboard.write"
+required = true
+scope = [".dx/receipts"]
+reason = "Copy the local DX receipts path without launching a shell."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Obsidian host surface."
+
+[[host_actions]]
+id = "dx.obsidian.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Run the low-risk DX status command from Obsidian."
+operation = "dx.status"
+transport = "process"
+input = "none"
+output = "obsidian-notice"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["process.spawn"]
+
+[[host_actions]]
+id = "dx.obsidian.run_doctor"
+group = "diagnostics"
+label = "Run DX Doctor"
+description = "Run DX diagnostics from Obsidian after user approval."
+operation = "dx.doctor"
+transport = "process"
+input = "none"
+output = "obsidian-notice"
+risk_level = "medium"
+requires_user_approval = true
+writes_receipts = false
+required_capabilities = ["process.spawn"]
+
+[[host_actions]]
+id = "dx.obsidian.copy_receipts_path"
+group = "receipts"
+label = "Copy DX Receipts Path"
+description = "Copy the local DX receipt folder path from Obsidian."
+operation = "receipt.copyPath"
+transport = "host-ui"
+input = "none"
+output = "clipboard"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["clipboard.write", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.obsidian.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

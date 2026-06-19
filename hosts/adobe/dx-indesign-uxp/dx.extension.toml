@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.indesign.command-center"
+name = "DX InDesign Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official InDesign UXP command center for DX status, typography asset search, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["indesign"]
+platforms = ["windows", "macos"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.document}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "adobe-uxp-plugin"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "adobe.uxp.panel"
+required = true
+scope = ["plugin-panel", "plugin-commands"]
+reason = "Render an InDesign UXP panel and user-invoked command entries."
+
+[[capabilities]]
+id = "adobe.indesign.document.read"
+required = true
+scope = ["document-metadata"]
+reason = "Reserve read-only document metadata for configured InDesign host context without page, story, typography, or export mutation."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for typography asset and status requests when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the InDesign host surface."
+
+[[host_actions]]
+id = "dx.indesign.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the configured InDesign service bridge."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "uxp-panel"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["adobe.uxp.panel", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.indesign.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX font, icon, media, and layout asset search through the configured service bridge."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "uxp-panel"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["adobe.uxp.panel", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.indesign.show_receipts"
+group = "receipts"
+label = "Show DX Receipts Path"
+description = "Show the local DX receipt folder path from InDesign."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "uxp-panel"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["adobe.uxp.panel", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.indesign.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

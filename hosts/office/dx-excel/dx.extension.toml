@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.excel.command-center"
+name = "DX Excel Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Excel task pane for DX status, assets, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["excel"]
+platforms = ["windows", "macos", "web"]
+architectures = ["x86_64", "aarch64", "wasm32"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.workbook}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "office-web-addin"
+network = "restricted-to-valid-domains"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "office.taskpane"
+required = true
+scope = ["excel-taskpane"]
+reason = "Render a workbook-safe Excel task pane with explicit user actions."
+
+[[capabilities]]
+id = "office.workbook.read"
+required = true
+scope = ["workbook-metadata"]
+reason = "Read workbook context metadata for command availability only."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for asset and status requests when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Excel task pane."
+
+[[host_actions]]
+id = "dx.excel.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the configured Excel service bridge."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "office-taskpane"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["office.taskpane", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.excel.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX icon, font, and media asset search through the configured service bridge."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "office-taskpane"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["office.taskpane", "office.workbook.read", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.excel.copy_receipts_path"
+group = "receipts"
+label = "Copy DX Receipts Path"
+description = "Show the local DX receipt folder path from Excel."
+operation = "receipt.copyPath"
+transport = "host-ui"
+input = "none"
+output = "office-taskpane"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["office.taskpane", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.excel.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

@@ -1,0 +1,20 @@
+{
+  "timeZone": "Etc/UTC",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [],
+  "addOns": {
+    "common": {
+      "name": "DX Command Center",
+      "logoUrl": "https://dx.dev/assets/workspace-addon-logo.png",
+      "layoutProperties": {
+        "primaryColor": "#141414",
+        "secondaryColor": "#3C6DF0"
+      },
+      "homepageTrigger": {
+        "runFunction": "showDxCommandCenter",
+        "enabled": true
+      }
+    }
+  }
+}

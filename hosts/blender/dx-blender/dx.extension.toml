@@ -1,0 +1,104 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.blender.command-center"
+name = "DX Blender Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Blender command-center bridge for DX status, diagnostics, and receipts."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["blender"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "process"
+command = "dx"
+args = []
+cwd = "${host.project}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "argv"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "blender-python-addon"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "process.spawn"
+required = true
+scope = ["dx"]
+reason = "Run fixed DX CLI commands from Blender with shell-free argv."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Open existing DX receipts from the Blender host surface."
+
+[[host_actions]]
+id = "dx.blender.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Run the low-risk DX status command from Blender."
+operation = "dx.status"
+transport = "process"
+input = "none"
+output = "blender-report"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["process.spawn"]
+
+[[host_actions]]
+id = "dx.blender.run_doctor"
+group = "diagnostics"
+label = "Run DX Doctor"
+description = "Run DX diagnostics from Blender after user approval."
+operation = "dx.doctor"
+transport = "process"
+input = "none"
+output = "blender-report"
+risk_level = "medium"
+requires_user_approval = true
+writes_receipts = false
+required_capabilities = ["process.spawn"]
+
+[[host_actions]]
+id = "dx.blender.open_receipts"
+group = "receipts"
+label = "Open DX Receipts"
+description = "Open the DX receipt folder from Blender."
+operation = "receipt.openFolder"
+transport = "host-ui"
+input = "none"
+output = "host-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.blender.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

@@ -1,0 +1,20 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "DX Unreal Engine Command Center",
+  "Description": "DX command center for Unreal Editor status, asset search intent, and receipt paths.",
+  "Category": "Editor",
+  "CreatedBy": "DX",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "DXUnrealCommandCenterEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

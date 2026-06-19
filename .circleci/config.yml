@@ -1,0 +1,36 @@
+version: 2.1
+
+jobs:
+  linux-check:
+    docker:
+      - image: cimg/rust:1.94.0
+    resource_class: small
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dx-extensions-cargo-{{ arch }}-{{ checksum "Cargo.lock" }}
+            - dx-extensions-cargo-{{ arch }}-
+      - run:
+          name: Cargo metadata
+          command: cargo metadata --locked --no-deps --format-version 1
+      - run:
+          name: Cargo check
+          command: |
+            cargo check --locked --workspace --lib --bins
+      - save_cache:
+          key: dx-extensions-cargo-{{ arch }}-{{ checksum "Cargo.lock" }}
+          paths:
+            - ~/.cargo/registry
+            - ~/.cargo/git
+            - target
+
+workflows:
+  validate:
+    jobs:
+      - linux-check:
+          filters:
+            branches:
+              only:
+                - main
+                - dev

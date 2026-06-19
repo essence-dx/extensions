@@ -1,0 +1,10 @@
+{
+  "id": "dx-command-center",
+  "name": "DX Command Center",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.0",
+  "description": "Run approved DX status and diagnostics commands from an Obsidian vault.",
+  "author": "DX",
+  "authorUrl": "https://dx.dev",
+  "isDesktopOnly": true
+}

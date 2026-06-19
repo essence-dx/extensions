@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "DX Browser Command Center",
+  "version": "0.1.0",
+  "description": "Official browser command-center bridge for DX tools and receipts.",
+  "icons": {
+    "16": "static/dx.svg",
+    "48": "static/dx.svg",
+    "128": "static/dx.svg"
+  },
+  "action": {
+    "default_icon": {
+      "16": "static/dx.svg",
+      "48": "static/dx.svg",
+      "128": "static/dx.svg"
+    },
+    "default_title": "DX",
+    "default_popup": "static/popup.html"
+  },
+  "background": {
+    "scripts": ["js/background/firefox.js"],
+    "type": "module"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "dx-browser-command-center@dx.dev",
+      "strict_min_version": "128.0"
+    }
+  },
+  "host_permissions": [],
+  "options_ui": {
+    "page": "static/options.html"
+  },
+  "permissions": ["activeTab", "nativeMessaging"],
+  "sidebar_action": {
+    "default_icon": {
+      "48": "static/dx.svg"
+    },
+    "default_panel": "static/sidebar.html",
+    "default_title": "DX"
+  }
+}

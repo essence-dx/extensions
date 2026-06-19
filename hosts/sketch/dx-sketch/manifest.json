@@ -1,0 +1,35 @@
+{
+  "name": "DX Command Center",
+  "description": "Source-level Sketch plugin manifest for DX status, asset search, and receipt path actions.",
+  "author": "DX",
+  "icon": "icon.png",
+  "version": "0.1.0",
+  "identifier": "dev.dx.sketch.command-center",
+  "compatibleVersion": "52.1",
+  "scope": "application",
+  "disableCocoaScriptPreprocessor": true,
+  "commands": [
+    {
+      "name": "Show DX Status",
+      "identifier": "show-status",
+      "script": "src/index.ts",
+      "handler": "showDxStatus"
+    },
+    {
+      "name": "Search DX Assets",
+      "identifier": "search-assets",
+      "script": "src/index.ts",
+      "handler": "searchDxAssets"
+    },
+    {
+      "name": "Show DX Receipts Path",
+      "identifier": "show-receipts",
+      "script": "src/index.ts",
+      "handler": "showDxReceipts"
+    }
+  ],
+  "menu": {
+    "title": "DX Command Center",
+    "items": ["show-status", "search-assets", "-", "show-receipts"]
+  }
+}

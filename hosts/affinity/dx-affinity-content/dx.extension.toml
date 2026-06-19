@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.affinity-content.bridge"
+name = "DX Affinity Content Bridge"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Affinity content bridge for DX assets, fonts, swatches, and receipts."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["affinity-photo", "affinity-designer", "affinity-publisher"]
+platforms = ["windows", "macos", "ipad"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "host_script"
+command = "manual-affinity-import"
+args = []
+cwd = "${host.content-import}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "affinity-content-addon"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "affinity.content.assets"
+required = true
+scope = ["afassets", "afstyles", "aftemplate"]
+reason = "Prepare DX icons and media as manually imported Affinity content packs."
+
+[[capabilities]]
+id = "affinity.content.fonts"
+required = true
+scope = ["affont", "otf", "ttf"]
+reason = "Prepare DX fonts for manual Affinity import without host automation."
+
+[[capabilities]]
+id = "affinity.content.swatches"
+required = true
+scope = ["afpalette", "ase"]
+reason = "Prepare DX color palettes and swatches for manual Affinity import."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose DX receipt references for generated content packs."
+
+[[host_actions]]
+id = "dx.affinity-content.prepare_assets"
+group = "assets"
+label = "Prepare DX Affinity Assets"
+description = "Prepare DX icons and media as manually imported Affinity content packs."
+operation = "dx.assets.exportAffinityPack"
+transport = "manual-import"
+input = "text"
+output = "affinity-content-pack"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["affinity.content.assets"]
+
+[[host_actions]]
+id = "dx.affinity-content.prepare_fonts"
+group = "fonts"
+label = "Prepare DX Affinity Fonts"
+description = "Prepare DX fonts for manual import into Affinity apps."
+operation = "dx.fonts.exportAffinityPack"
+transport = "manual-import"
+input = "text"
+output = "affinity-content-pack"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["affinity.content.fonts", "affinity.content.swatches"]
+
+[[host_actions]]
+id = "dx.affinity-content.show_receipts"
+group = "receipts"
+label = "Show DX Affinity Receipts"
+description = "Show the DX receipt path for Affinity content exports."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "receipt-path"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.affinity-content.bridge/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

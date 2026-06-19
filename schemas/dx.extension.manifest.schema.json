@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dx.dev/schemas/dx.extension.manifest.schema.json",
+  "title": "DX Extension Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "manifest_version",
+    "extension",
+    "compatibility",
+    "entrypoint",
+    "transport",
+    "security",
+    "capabilities",
+    "host_actions",
+    "receipts"
+  ],
+  "properties": {
+    "schema": { "const": "dx.extension.manifest" },
+    "manifest_version": { "type": "integer", "minimum": 1 },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "publisher", "version", "license", "official"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^dx\\.[a-z0-9-]+(\\.[a-z0-9-]+)+$" },
+        "name": { "type": "string", "minLength": 3 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "license": { "type": "string", "minLength": 1 },
+        "official": { "type": "boolean" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dx_min", "hosts", "platforms", "architectures"],
+      "properties": {
+        "dx_min": { "type": "string", "minLength": 1 },
+        "hosts": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "platforms": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "architectures": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "entrypoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transport", "command", "args", "cwd", "startup_timeout_ms", "shutdown_timeout_ms"],
+      "properties": {
+        "transport": { "enum": ["process", "stdio_json_rpc", "http", "native_messaging", "named_pipe", "host_script"] },
+        "command": { "type": "string", "minLength": 1 },
+        "args": { "type": "array", "items": { "type": "string" } },
+        "cwd": { "type": "string", "minLength": 1 },
+        "startup_timeout_ms": { "type": "integer", "minimum": 1000 },
+        "shutdown_timeout_ms": { "type": "integer", "minimum": 500 }
+      }
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol", "framing", "encoding", "max_message_bytes", "supports_cancel"],
+      "properties": {
+        "protocol": { "type": "string", "minLength": 1 },
+        "framing": { "type": "string", "minLength": 1 },
+        "encoding": { "const": "utf8" },
+        "max_message_bytes": { "type": "integer", "minimum": 1024 },
+        "heartbeat_interval_ms": { "type": "integer", "minimum": 0 },
+        "supports_cancel": { "type": "boolean" }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trust", "signature", "sandbox", "network", "secrets", "redaction", "stores_payloads", "stores_process_output"],
+      "properties": {
+        "trust": { "type": "string", "minLength": 1 },
+        "signature": { "type": "string", "minLength": 1 },
+        "checksum": { "type": "string" },
+        "sandbox": { "type": "string", "minLength": 1 },
+        "network": { "type": "string", "minLength": 1 },
+        "secrets": { "type": "string", "minLength": 1 },
+        "redaction": { "type": "string", "minLength": 1 },
+        "stores_payloads": { "type": "boolean" },
+        "stores_process_output": { "type": "boolean" }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "required", "scope", "reason"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "required": { "type": "boolean" },
+          "scope": { "type": "array", "items": { "type": "string" } },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "host_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "group",
+          "label",
+          "description",
+          "operation",
+          "transport",
+          "input",
+          "output",
+          "risk_level",
+          "requires_user_approval",
+          "writes_receipts",
+          "required_capabilities"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "group": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "operation": { "type": "string", "minLength": 1 },
+          "transport": { "type": "string", "minLength": 1 },
+          "input": { "type": "string", "minLength": 1 },
+          "output": { "type": "string", "minLength": 1 },
+          "risk_level": { "enum": ["low", "medium", "high"] },
+          "requires_user_approval": { "type": "boolean" },
+          "writes_receipts": { "type": "boolean" },
+          "required_capabilities": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "receipts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "schema", "latest_path", "retention_limit", "metadata_only"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "schema": { "type": "string", "minLength": 1 },
+          "latest_path": { "type": "string", "minLength": 1 },
+          "retention_limit": { "type": "integer", "minimum": 1 },
+          "metadata_only": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

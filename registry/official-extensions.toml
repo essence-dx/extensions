@@ -1,0 +1,170 @@
+schema = "dx.extensions.registry"
+manifest_version = 1
+
+[[extensions]]
+id = "dx.vscode.command-center"
+name = "DX VS Code Command Center"
+path = "hosts/vscode/dx-vscode"
+manifest = "hosts/vscode/dx-vscode/dx.extension.toml"
+status = "active"
+professional_targets = ["vscode.extension-api"]
+
+[[extensions]]
+id = "dx.browser.command-center"
+name = "DX Browser Command Center"
+path = "hosts/browser/dx-browser"
+manifest = "hosts/browser/dx-browser/dx.extension.toml"
+status = "experimental"
+professional_targets = ["browser.chrome-extensions", "browser.edge-extensions", "browser.firefox-webextensions"]
+
+[[extensions]]
+id = "dx.blender.command-center"
+name = "DX Blender Command Center"
+path = "hosts/blender/dx-blender"
+manifest = "hosts/blender/dx-blender/dx.extension.toml"
+status = "experimental"
+professional_targets = ["blender.python-addons"]
+
+[[extensions]]
+id = "dx.obsidian.command-center"
+name = "DX Obsidian Command Center"
+path = "hosts/obsidian/dx-command-center"
+manifest = "hosts/obsidian/dx-command-center/dx.extension.toml"
+status = "experimental"
+professional_targets = ["obsidian.plugins"]
+
+[[extensions]]
+id = "dx.figma.command-center"
+name = "DX Figma Command Center"
+path = "hosts/figma/dx-figma"
+manifest = "hosts/figma/dx-figma/dx.extension.toml"
+status = "experimental"
+professional_targets = ["figma.plugins"]
+
+[[extensions]]
+id = "dx.canva.command-center"
+name = "DX Canva Command Center"
+path = "hosts/canva/dx-canva"
+manifest = "hosts/canva/dx-canva/dx.extension.toml"
+status = "experimental"
+professional_targets = ["canva.apps-sdk"]
+
+[[extensions]]
+id = "dx.sketch.command-center"
+name = "DX Sketch Command Center"
+path = "hosts/sketch/dx-sketch"
+manifest = "hosts/sketch/dx-sketch/dx.extension.toml"
+status = "experimental"
+professional_targets = ["sketch.plugins"]
+
+[[extensions]]
+id = "dx.excel.command-center"
+name = "DX Excel Command Center"
+path = "hosts/office/dx-excel"
+manifest = "hosts/office/dx-excel/dx.extension.toml"
+status = "experimental"
+professional_targets = ["microsoft.excel.add-ins"]
+
+[[extensions]]
+id = "dx.powerpoint.command-center"
+name = "DX PowerPoint Command Center"
+path = "hosts/office/dx-powerpoint"
+manifest = "hosts/office/dx-powerpoint/dx.extension.toml"
+status = "experimental"
+professional_targets = ["microsoft.powerpoint.add-ins"]
+
+[[extensions]]
+id = "dx.word.command-center"
+name = "DX Word Command Center"
+path = "hosts/office/dx-word"
+manifest = "hosts/office/dx-word/dx.extension.toml"
+status = "experimental"
+professional_targets = ["microsoft.word.add-ins"]
+
+[[extensions]]
+id = "dx.zed.command-center"
+name = "DX Zed Command Center"
+path = "hosts/zed/dx-zed"
+manifest = "hosts/zed/dx-zed/dx.extension.toml"
+status = "experimental"
+professional_targets = ["zed.extensions"]
+
+[[extensions]]
+id = "dx.photoshop.command-center"
+name = "DX Photoshop Command Center"
+path = "hosts/adobe/dx-photoshop-uxp"
+manifest = "hosts/adobe/dx-photoshop-uxp/dx.extension.toml"
+status = "experimental"
+professional_targets = ["adobe.photoshop.uxp"]
+
+[[extensions]]
+id = "dx.premiere-pro.command-center"
+name = "DX Premiere Pro Command Center"
+path = "hosts/adobe/dx-premiere-pro-uxp"
+manifest = "hosts/adobe/dx-premiere-pro-uxp/dx.extension.toml"
+status = "experimental"
+professional_targets = ["adobe.premiere-pro.uxp"]
+
+[[extensions]]
+id = "dx.indesign.command-center"
+name = "DX InDesign Command Center"
+path = "hosts/adobe/dx-indesign-uxp"
+manifest = "hosts/adobe/dx-indesign-uxp/dx.extension.toml"
+status = "experimental"
+professional_targets = ["adobe.indesign.uxp"]
+
+[[extensions]]
+id = "dx.davinci-resolve.command-center"
+name = "DX DaVinci Resolve Command Center"
+path = "hosts/blackmagic/dx-davinci-resolve"
+manifest = "hosts/blackmagic/dx-davinci-resolve/dx.extension.toml"
+status = "experimental"
+professional_targets = ["blackmagic.davinci-resolve.scripting"]
+
+[[extensions]]
+id = "dx.intellij-platform.command-center"
+name = "DX IntelliJ Platform Command Center"
+path = "hosts/jetbrains/dx-intellij-platform"
+manifest = "hosts/jetbrains/dx-intellij-platform/dx.extension.toml"
+status = "experimental"
+professional_targets = ["jetbrains.intellij-platform"]
+
+[[extensions]]
+id = "dx.visual-studio.command-center"
+name = "DX Visual Studio Command Center"
+path = "hosts/visual-studio/dx-visual-studio"
+manifest = "hosts/visual-studio/dx-visual-studio/dx.extension.toml"
+status = "experimental"
+professional_targets = ["visual-studio.sdk"]
+
+[[extensions]]
+id = "dx.unity-editor.command-center"
+name = "DX Unity Editor Command Center"
+path = "hosts/unity/dx-unity-editor"
+manifest = "hosts/unity/dx-unity-editor/dx.extension.toml"
+status = "experimental"
+professional_targets = ["unity.editor-extensions"]
+
+[[extensions]]
+id = "dx.unreal-engine.command-center"
+name = "DX Unreal Engine Command Center"
+path = "hosts/unreal/dx-unreal-engine"
+manifest = "hosts/unreal/dx-unreal-engine/dx.extension.toml"
+status = "experimental"
+professional_targets = ["unreal-engine.plugins"]
+
+[[extensions]]
+id = "dx.google-workspace.command-center"
+name = "DX Google Workspace Command Center"
+path = "hosts/google-workspace/dx-google-workspace-addon"
+manifest = "hosts/google-workspace/dx-google-workspace-addon/dx.extension.toml"
+status = "experimental"
+professional_targets = ["google.workspace-addons"]
+
+[[extensions]]
+id = "dx.affinity-content.bridge"
+name = "DX Affinity Content Bridge"
+path = "hosts/affinity/dx-affinity-content"
+manifest = "hosts/affinity/dx-affinity-content/dx.extension.toml"
+status = "experimental"
+professional_targets = ["affinity.content-addons"]

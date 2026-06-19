@@ -1,0 +1,4 @@
+/dist/
+/*.sketchplugin/
+/*.sketchplugin.zip
+/node_modules/

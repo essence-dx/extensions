@@ -1,0 +1,224 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.vscode.command-center"
+name = "DX VS Code Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official VS Code command-center bridge for DX tools, receipts, and local workspace checks."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["vscode", "cursor", "windsurf"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "process"
+command = "dx"
+args = []
+cwd = "${workspace.root}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "argv"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = true
+
+[security]
+trust = "workspace"
+signature = "development-unsigned"
+sandbox = "host-mediated"
+network = "deny-by-default"
+secrets = "host-mediated"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "workspace.read"
+required = true
+scope = ["workspace.root", "dx.config"]
+reason = "Read workspace metadata for command enablement."
+
+[[capabilities]]
+id = "process.spawn"
+required = true
+scope = ["dx"]
+reason = "Run trust-gated DX CLI commands with shell-free argv."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Open existing DX receipts for host-side inspection."
+
+[[capabilities]]
+id = "icons.read"
+required = true
+scope = ["G:/Dx/icon/index", "G:/Dx/icon/data"]
+reason = "Search the local DX icon index through the trusted DX CLI."
+
+[[capabilities]]
+id = "forge.read"
+required = true
+scope = ["dx forge packages"]
+reason = "List source-owned DX Forge packages through the trusted DX CLI."
+
+[[capabilities]]
+id = "graph.read"
+required = true
+scope = [".dx/receipts/graph", "dx graph"]
+reason = "Read the source-owned DX build graph through the trusted DX CLI."
+
+[[capabilities]]
+id = "check.receipts.read"
+required = true
+scope = [".dx/receipts/check/check-latest.json", "dx check --latest-receipt --json"]
+reason = "Read the latest DX check receipt through the trusted DX CLI without running checks."
+
+[[capabilities]]
+id = "check.editor.read"
+required = true
+scope = [".dx/receipts/check/check-latest.json", ".dx/check/check-editor-latest.machine", "dx check editor --json"]
+reason = "Read the low-impact DX check editor polling state through the trusted DX CLI."
+
+[[host_actions]]
+id = "dx.vscode.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Run the DX status command in the trusted workspace."
+operation = "dx.status"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn"]
+
+[[host_actions]]
+id = "dx.vscode.run_doctor"
+group = "diagnostics"
+label = "Run DX Doctor"
+description = "Run the DX doctor command in the trusted workspace."
+operation = "dx.doctor"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "medium"
+requires_user_approval = true
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn"]
+
+[[host_actions]]
+id = "dx.vscode.open_receipts"
+group = "receipts"
+label = "Open Receipts Folder"
+description = "Open the workspace DX receipts folder in the host OS file browser."
+operation = "receipt.openFolder"
+transport = "host"
+input = "none"
+output = "host-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["receipts.read"]
+
+[[host_actions]]
+id = "dx.vscode.copy_receipts_path"
+group = "receipts"
+label = "Copy Receipts Path"
+description = "Copy the workspace DX receipts folder path to the clipboard."
+operation = "receipt.copyPath"
+transport = "host"
+input = "none"
+output = "host-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["receipts.read"]
+
+[[host_actions]]
+id = "dx.vscode.search_icons"
+group = "assets"
+label = "Search DX Icons"
+description = "Search the local DX icon index from VS Code."
+operation = "dx.assets.search"
+transport = "default"
+input = "text"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn", "icons.read"]
+
+[[host_actions]]
+id = "dx.vscode.list_forge_packages"
+group = "forge"
+label = "List DX Forge Packages"
+description = "List source-owned DX Forge packages from VS Code."
+operation = "dx.forge.packages.list"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn", "forge.read"]
+
+[[host_actions]]
+id = "dx.vscode.show_build_graph"
+group = "graph"
+label = "Show DX Build Graph"
+description = "Read the source-owned DX build graph from VS Code."
+operation = "dx.graph.read"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn", "graph.read"]
+
+[[host_actions]]
+id = "dx.vscode.show_latest_check_receipt"
+group = "checks"
+label = "Show Latest DX Check Receipt"
+description = "Read the latest DX check receipt from VS Code without running checks."
+operation = "dx.check.receipt.latest"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn", "check.receipts.read"]
+
+[[host_actions]]
+id = "dx.vscode.show_check_editor_state"
+group = "checks"
+label = "Show DX Check Editor State"
+description = "Read the low-impact DX check editor polling state from VS Code."
+operation = "dx.check.editor.read"
+transport = "default"
+input = "none"
+output = "terminal"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["workspace.read", "process.spawn", "check.editor.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.vscode.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

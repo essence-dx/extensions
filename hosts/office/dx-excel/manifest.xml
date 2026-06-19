@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="TaskPaneApp">
+  <Id>7e2f3d5c-9b64-4e38-8bb2-4e63bb2a2147</Id>
+  <Version>0.1.0.0</Version>
+  <ProviderName>DX</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="DX Command Center"/>
+  <Description DefaultValue="Run approved DX workbook-safe actions from Excel."/>
+  <IconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://dx-office.example.invalid/support"/>
+  <AppDomains>
+    <AppDomain>https://dx-office.example.invalid</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="ExcelApi" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://dx-office.example.invalid/excel/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadDocument</Permissions>
+  <VersionOverrides
+    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="DxExcelGetStartedTitle"/>
+            <Description resid="DxExcelGetStartedDescription"/>
+            <LearnMoreUrl resid="DxExcelSupportUrl"/>
+          </GetStarted>
+          <FunctionFile resid="DxExcelTaskpaneUrl"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="DxExcelCommandCenterGroup">
+                <Label resid="DxExcelGroupLabel"/>
+                <Icon>
+                  <bt:Image size="16" resid="DxExcelIcon16"/>
+                  <bt:Image size="32" resid="DxExcelIcon32"/>
+                  <bt:Image size="80" resid="DxExcelIcon80"/>
+                </Icon>
+                <Control xsi:type="Button" id="DxExcelCommandCenterButton">
+                  <Label resid="DxExcelButtonLabel"/>
+                  <Supertip>
+                    <Title resid="DxExcelButtonLabel"/>
+                    <Description resid="DxExcelButtonDescription"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="DxExcelIcon16"/>
+                    <bt:Image size="32" resid="DxExcelIcon32"/>
+                    <bt:Image size="80" resid="DxExcelIcon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DxExcelCommandCenterTaskpane</TaskpaneId>
+                    <SourceLocation resid="DxExcelTaskpaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="DxExcelIcon16" DefaultValue="https://dx-office.example.invalid/assets/icon-16.png"/>
+        <bt:Image id="DxExcelIcon32" DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+        <bt:Image id="DxExcelIcon80" DefaultValue="https://dx-office.example.invalid/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="DxExcelTaskpaneUrl" DefaultValue="https://dx-office.example.invalid/excel/taskpane.html"/>
+        <bt:Url id="DxExcelSupportUrl" DefaultValue="https://dx-office.example.invalid/support"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="DxExcelGroupLabel" DefaultValue="DX"/>
+        <bt:String id="DxExcelButtonLabel" DefaultValue="DX Command Center"/>
+        <bt:String id="DxExcelGetStartedTitle" DefaultValue="DX Command Center"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="DxExcelButtonDescription" DefaultValue="Open DX workbook-safe actions."/>
+        <bt:String id="DxExcelGetStartedDescription" DefaultValue="Open the DX task pane from the Home ribbon."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

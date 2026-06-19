@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
+  <Commands package="DxCommandCenterPackage">
+    <Groups>
+      <Group guid="DxCommandSet" id="DxCommandGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOLS_EXTENSIONS" />
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="DxCommandSet" id="ShowStatus" priority="0x0100" type="Button">
+        <Parent guid="DxCommandSet" id="DxCommandGroup" />
+        <Strings>
+          <ButtonText>DX: Show Status</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="DxCommandSet" id="SearchAssets" priority="0x0101" type="Button">
+        <Parent guid="DxCommandSet" id="DxCommandGroup" />
+        <Strings>
+          <ButtonText>DX: Search Assets</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="DxCommandSet" id="ShowReceipts" priority="0x0102" type="Button">
+        <Parent guid="DxCommandSet" id="DxCommandGroup" />
+        <Strings>
+          <ButtonText>DX: Show Receipts Path</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+  <Symbols>
+    <GuidSymbol name="guidSHLMainMenu" value="{D309F791-903F-11D0-9EFC-00A0C911004F}">
+      <IDSymbol name="IDM_VS_TOOLS_EXTENSIONS" value="0x0132" />
+    </GuidSymbol>
+    <GuidSymbol name="DxCommandSet" value="{498c1497-9233-450a-922a-c32d8dc090ce}">
+      <IDSymbol name="DxCommandGroup" value="0x1000" />
+      <IDSymbol name="ShowStatus" value="0x0100" />
+      <IDSymbol name="SearchAssets" value="0x0101" />
+      <IDSymbol name="ShowReceipts" value="0x0102" />
+    </GuidSymbol>
+    <GuidSymbol name="DxCommandCenterPackage" value="{7e318985-fc02-45de-b516-c8dca8b01f90}" />
+  </Symbols>
+</CommandTable>

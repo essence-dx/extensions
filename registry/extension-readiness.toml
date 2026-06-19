@@ -1,0 +1,191 @@
+schema = "dx.extension_readiness"
+manifest_version = 1
+
+[[extensions]]
+id = "dx.vscode.command-center"
+stage = "source-level"
+manifest = "hosts/vscode/dx-vscode/dx.extension.toml"
+source_guard = "test:vscode-package-verifier"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.vscode.command-center/readiness-latest.json"
+next_proof = "Run smoke:vscode-loaded-host:j1 against an installed VS Code Extension Development Host and capture the metadata-only command-registration receipt."
+blocked_by = ["loaded VS Code Extension Development Host receipt", "VSIX package proof", "package signing receipt", "checksum receipt", "distribution review proof"]
+
+[[extensions]]
+id = "dx.browser.command-center"
+stage = "source-level"
+manifest = "hosts/browser/dx-browser/dx.extension.toml"
+source_guard = "check:browser"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.browser.command-center/readiness-latest.json"
+next_proof = "Capture loaded Chrome, Edge, and Firefox profile dispatch receipts against the installed native-host executable."
+blocked_by = ["loaded Chrome dispatch receipt", "loaded Edge dispatch receipt", "loaded Firefox dispatch receipt", "native-host release package proof", "package signing receipt", "checksum receipt", "store distribution proof"]
+
+[[extensions]]
+id = "dx.blender.command-center"
+stage = "source-level"
+manifest = "hosts/blender/dx-blender/dx.extension.toml"
+source_guard = "test:blender-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.blender.command-center/readiness-latest.json"
+next_proof = "Load the add-on in Blender and capture metadata-only operator availability receipts."
+blocked_by = ["loaded Blender add-on receipt", "add-on package proof", "signing receipt", "checksum receipt", "marketplace or distribution proof"]
+
+[[extensions]]
+id = "dx.obsidian.command-center"
+stage = "source-level"
+manifest = "hosts/obsidian/dx-command-center/dx.extension.toml"
+source_guard = "test:obsidian-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.obsidian.command-center/readiness-latest.json"
+next_proof = "Load the plugin in a test vault and capture metadata-only command palette receipts."
+blocked_by = ["loaded Obsidian test-vault receipt", "release asset proof", "checksum receipt", "community plugin review proof"]
+
+[[extensions]]
+id = "dx.figma.command-center"
+stage = "source-level"
+manifest = "hosts/figma/dx-figma/dx.extension.toml"
+source_guard = "test:figma-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.figma.command-center/readiness-latest.json"
+next_proof = "Run a loaded Figma desktop plugin smoke and capture metadata-only UI message receipts."
+blocked_by = ["loaded Figma desktop receipt", "generated plugin ID proof", "local-service proof", "signing receipt", "checksum receipt", "Community review proof"]
+
+[[extensions]]
+id = "dx.canva.command-center"
+stage = "source-level"
+manifest = "hosts/canva/dx-canva/dx.extension.toml"
+source_guard = "test:canva-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.canva.command-center/readiness-latest.json"
+next_proof = "Run a development Canva app smoke and capture metadata-only command receipts."
+blocked_by = ["development Canva app receipt", "live local-service proof", "signing receipt", "checksum receipt", "Canva review proof"]
+
+[[extensions]]
+id = "dx.sketch.command-center"
+stage = "source-level"
+manifest = "hosts/sketch/dx-sketch/dx.extension.toml"
+source_guard = "test:sketch-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.sketch.command-center/readiness-latest.json"
+next_proof = "Load the Sketch plugin or run sketchtool and capture document-safe metadata receipts."
+blocked_by = ["loaded Sketch plugin receipt", "sketchtool run proof", "local-service proof", "release package proof", "signing receipt", "release checksum receipt", "notarization proof", "Plugin Directory review proof"]
+
+[[extensions]]
+id = "dx.excel.command-center"
+stage = "source-level"
+manifest = "hosts/office/dx-excel/dx.extension.toml"
+source_guard = "test:excel-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.excel.command-center/readiness-latest.json"
+next_proof = "Sideload the Excel task-pane manifest and capture metadata-only command receipts."
+blocked_by = ["sideloaded Excel receipt", "live local-service proof", "package proof", "signing receipt", "checksum receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.powerpoint.command-center"
+stage = "source-level"
+manifest = "hosts/office/dx-powerpoint/dx.extension.toml"
+source_guard = "test:powerpoint-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.powerpoint.command-center/readiness-latest.json"
+next_proof = "Sideload the PowerPoint task-pane manifest and capture metadata-only command receipts."
+blocked_by = ["sideloaded PowerPoint receipt", "live local-service proof", "package proof", "signing receipt", "checksum receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.word.command-center"
+stage = "source-level"
+manifest = "hosts/office/dx-word/dx.extension.toml"
+source_guard = "test:word-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.word.command-center/readiness-latest.json"
+next_proof = "Sideload the Word task-pane manifest and capture metadata-only command receipts."
+blocked_by = ["sideloaded Word receipt", "live local-service proof", "package proof", "signing receipt", "checksum receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.zed.command-center"
+stage = "source-level"
+manifest = "hosts/zed/dx-zed/dx.extension.toml"
+source_guard = "test:zed-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.zed.command-center/readiness-latest.json"
+next_proof = "Load the Zed dev extension and capture installed source, extension index, host log, executable hash, and package-matched WebAssembly proof."
+blocked_by = ["loaded Zed dev-extension receipt", "local-service proof", "gallery package proof", "signing receipt", "checksum receipt"]
+
+[[extensions]]
+id = "dx.photoshop.command-center"
+stage = "source-level"
+manifest = "hosts/adobe/dx-photoshop-uxp/dx.extension.toml"
+source_guard = "test:photoshop-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.photoshop.command-center/readiness-latest.json"
+next_proof = "Load the Photoshop UXP panel through UXP Developer Tool and capture metadata-only panel receipts."
+blocked_by = ["loaded Photoshop UXP receipt", "document-safe runtime proof", "local-service proof", "CCX package proof", "signing receipt", "release checksum receipt", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.premiere-pro.command-center"
+stage = "source-level"
+manifest = "hosts/adobe/dx-premiere-pro-uxp/dx.extension.toml"
+source_guard = "test:premiere-pro-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.premiere-pro.command-center/readiness-latest.json"
+next_proof = "Load the Premiere Pro UXP panel and capture project-safe metadata-only panel receipts."
+blocked_by = ["loaded Premiere Pro UXP receipt", "project-safe runtime proof", "local-service proof", "CCX package proof", "native or hybrid plugin proof", "signing receipt", "release checksum receipt", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.indesign.command-center"
+stage = "source-level"
+manifest = "hosts/adobe/dx-indesign-uxp/dx.extension.toml"
+source_guard = "test:indesign-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.indesign.command-center/readiness-latest.json"
+next_proof = "Load the InDesign UXP panel and capture document-safe metadata-only panel receipts."
+blocked_by = ["loaded InDesign UXP receipt", "document-safe runtime proof", "local-service proof", "CCX package proof", "native or hybrid plugin proof", "signing receipt", "release checksum receipt", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.davinci-resolve.command-center"
+stage = "source-level"
+manifest = "hosts/blackmagic/dx-davinci-resolve/dx.extension.toml"
+source_guard = "test:davinci-resolve-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.davinci-resolve.command-center/readiness-latest.json"
+next_proof = "Run the script inside DaVinci Resolve and capture metadata-only command receipts."
+blocked_by = ["loaded DaVinci Resolve receipt", "Developer documentation version capture", "read-only project metadata proof", "local-service proof", "Workflow Integration proof", "signing receipt", "checksum receipt"]
+
+[[extensions]]
+id = "dx.intellij-platform.command-center"
+stage = "source-level"
+manifest = "hosts/jetbrains/dx-intellij-platform/dx.extension.toml"
+source_guard = "test:intellij-platform-plugin-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.intellij-platform.command-center/readiness-latest.json"
+next_proof = "Run an IntelliJ sandbox IDE smoke and capture metadata-only action/tool-window receipts."
+blocked_by = ["sandbox IDE receipt", "Plugin Verifier receipt", "local-service proof", "signing receipt", "checksum receipt", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.visual-studio.command-center"
+stage = "source-level"
+manifest = "hosts/visual-studio/dx-visual-studio/dx.extension.toml"
+source_guard = "test:visual-studio-sdk-plugin-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.visual-studio.command-center/readiness-latest.json"
+next_proof = "Run a Visual Studio Experimental Instance smoke and capture metadata-only command receipts."
+blocked_by = ["Experimental Instance receipt", "VSIX package proof", "local-service proof", "signing receipt", "checksum receipt", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.unity-editor.command-center"
+stage = "source-level"
+manifest = "hosts/unity/dx-unity-editor/dx.extension.toml"
+source_guard = "test:unity-editor-plugin-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.unity-editor.command-center/readiness-latest.json"
+next_proof = "Load the package in a Unity test project and capture metadata-only menu/window receipts."
+blocked_by = ["loaded Unity Editor receipt", "package tarball proof", "local-service proof", "project import proof", "signing receipt", "checksum receipt", "Asset Store review proof"]
+
+[[extensions]]
+id = "dx.unreal-engine.command-center"
+stage = "source-level"
+manifest = "hosts/unreal/dx-unreal-engine/dx.extension.toml"
+source_guard = "test:unreal-engine-plugin-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.unreal-engine.command-center/readiness-latest.json"
+next_proof = "Load the plugin in an Unreal sample project and capture metadata-only menu/command receipts."
+blocked_by = ["loaded Unreal sample-project receipt", "plugin package proof", "local-service proof", "signing receipt", "checksum receipt", "Fab or Marketplace review proof"]
+
+[[extensions]]
+id = "dx.google-workspace.command-center"
+stage = "source-level"
+manifest = "hosts/google-workspace/dx-google-workspace-addon/dx.extension.toml"
+source_guard = "test:google-workspace-addon-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.google-workspace.command-center/readiness-latest.json"
+next_proof = "Deploy the Apps Script add-on to a test Workspace file and capture metadata-only card receipts."
+blocked_by = ["test Workspace file receipt", "Apps Script deployment proof", "OAuth consent proof", "cloud-service proof", "Marketplace review proof", "signing receipt", "checksum receipt"]
+
+[[extensions]]
+id = "dx.affinity-content.bridge"
+stage = "source-level"
+manifest = "hosts/affinity/dx-affinity-content/dx.extension.toml"
+source_guard = "test:affinity-content-addon-adapter"
+latest_readiness_receipt = ".dx/receipts/extensions/dx.affinity-content.bridge/readiness-latest.json"
+next_proof = "Import DX content assets manually into Affinity apps and capture metadata-only import receipts."
+blocked_by = ["manual Affinity import receipt", "Photoshop-compatible filter plugin proof", "loaded Affinity app smoke", "signing receipt", "checksum receipt", "Affinity distribution proof"]

@@ -1,0 +1,29 @@
+{
+  "schema": "dx.davinci_resolve.command_plans",
+  "commands": [
+    {
+      "id": "dx.davinci-resolve.show_status",
+      "label": "Show DX Status",
+      "operation": "dx.status",
+      "transport": "resolve-script",
+      "requiresRuntimeProof": true,
+      "mutatesResolveProject": false
+    },
+    {
+      "id": "dx.davinci-resolve.inspect_project",
+      "label": "Inspect Resolve Project",
+      "operation": "resolve.project.inspect",
+      "transport": "resolve-script",
+      "requiresRuntimeProof": true,
+      "mutatesResolveProject": false
+    },
+    {
+      "id": "dx.davinci-resolve.show_receipts",
+      "label": "Show DX Receipts Path",
+      "operation": "receipt.showPath",
+      "transport": "host-ui",
+      "requiresRuntimeProof": false,
+      "mutatesResolveProject": false
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<idea-plugin>
+  <id>dev.dx.intellij-platform.command-center</id>
+  <name>DX IntelliJ Platform Command Center</name>
+  <vendor email="support@dx.dev">DX</vendor>
+  <description>DX command center for IntelliJ Platform IDEs.</description>
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow
+      id="DX"
+      anchor="right"
+      icon="/icons/dx.svg"
+      factoryClass="dev.dx.intellij.toolwindow.DxToolWindowFactory" />
+    <projectService serviceImplementation="dev.dx.intellij.services.DxCommandPlanService" />
+  </extensions>
+
+  <actions>
+    <action
+      id="dev.dx.intellij.showStatus"
+      class="dev.dx.intellij.actions.DxCommandCenterAction"
+      text="DX: Show Status"
+      description="Show DX status metadata" />
+    <action
+      id="dev.dx.intellij.searchAssets"
+      class="dev.dx.intellij.actions.DxCommandCenterAction"
+      text="DX: Search Assets"
+      description="Search DX assets through the future local-service bridge" />
+    <action
+      id="dev.dx.intellij.showReceipts"
+      class="dev.dx.intellij.actions.DxCommandCenterAction"
+      text="DX: Show Receipts Path"
+      description="Show DX receipt path metadata" />
+  </actions>
+</idea-plugin>

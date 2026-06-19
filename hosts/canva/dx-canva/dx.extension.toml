@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.canva.command-center"
+name = "DX Canva Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Canva Apps SDK app for DX status, asset search, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["canva"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.file}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "canva-app-iframe"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "canva.app.iframe"
+required = true
+scope = ["canva-app"]
+reason = "Render a Canva app panel with explicit user actions."
+
+[[capabilities]]
+id = "canva.design_editor"
+required = true
+scope = ["design-editor"]
+reason = "Run inside the Canva design editor without reading or mutating design content."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for status and asset search when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Canva app surface."
+
+[[host_actions]]
+id = "dx.canva.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the configured Canva service bridge."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "canva-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["canva.app.iframe", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.canva.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX icon, font, and media asset search through the configured Canva service bridge."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "canva-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["canva.app.iframe", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.canva.copy_receipts_path"
+group = "receipts"
+label = "Copy DX Receipts Path"
+description = "Show the local DX receipt folder path from Canva."
+operation = "receipt.copyPath"
+transport = "host-ui"
+input = "none"
+output = "canva-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["canva.app.iframe", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.canva.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

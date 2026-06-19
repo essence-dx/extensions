@@ -1,0 +1,156 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.browser.command-center"
+name = "DX Browser Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official browser command-center bridge for DX tools, receipts, and native-host actions."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["chrome", "edge", "firefox"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "native_messaging"
+command = "dev.dx.browser"
+args = []
+cwd = "${browser.nativeMessagingHost}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx.browser.native-host"
+framing = "native-messaging-json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = true
+
+[security]
+trust = "browser-user-approved"
+signature = "development-unsigned"
+sandbox = "browser-extension"
+network = "deny-by-default"
+secrets = "native-host-mediated"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "browser.activeTab"
+required = true
+scope = ["activeTab.url", "activeTab.title"]
+reason = "Send minimal active-page context to the DX native host."
+
+[[capabilities]]
+id = "nativeMessaging.dx"
+required = true
+scope = ["dev.dx.browser"]
+reason = "Contact the future DX native messaging host through a typed JSON protocol."
+
+[[capabilities]]
+id = "forge.read"
+required = true
+scope = ["dx forge packages"]
+reason = "List source-owned DX Forge packages through the native host."
+
+[[capabilities]]
+id = "graph.read"
+required = true
+scope = [".dx/receipts/graph", "dx graph"]
+reason = "Read the source-owned DX build graph through the native host."
+
+[[capabilities]]
+id = "browser.sidePanel"
+required = true
+scope = ["sidePanel.default_path"]
+reason = "Render the DX command center in Chromium's side panel host surface."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Open existing DX receipts for host-side inspection."
+
+[[host_actions]]
+id = "dx.browser.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the browser native host."
+operation = "dx.status"
+transport = "native-host"
+input = "active-tab-context"
+output = "browser-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["browser.activeTab", "nativeMessaging.dx"]
+
+[[host_actions]]
+id = "dx.browser.run_doctor"
+group = "diagnostics"
+label = "Run DX Doctor"
+description = "Request DX diagnostics through the browser native host."
+operation = "dx.doctor"
+transport = "native-host"
+input = "active-tab-context"
+output = "browser-ui"
+risk_level = "medium"
+requires_user_approval = true
+writes_receipts = false
+required_capabilities = ["browser.activeTab", "nativeMessaging.dx"]
+
+[[host_actions]]
+id = "dx.browser.list_forge_packages"
+group = "forge"
+label = "List DX Forge Packages"
+description = "Request source-owned DX Forge packages through the browser native host."
+operation = "dx.forge.packages.list"
+transport = "native-host"
+input = "active-tab-context"
+output = "browser-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["browser.activeTab", "nativeMessaging.dx", "forge.read"]
+
+[[host_actions]]
+id = "dx.browser.show_build_graph"
+group = "graph"
+label = "Show DX Build Graph"
+description = "Request the source-owned DX build graph through the browser native host."
+operation = "dx.graph.read"
+transport = "native-host"
+input = "active-tab-context"
+output = "browser-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["browser.activeTab", "nativeMessaging.dx", "graph.read"]
+
+[[host_actions]]
+id = "dx.browser.open_receipts"
+group = "receipts"
+label = "Open Receipts"
+description = "Open DX extension receipts from the browser host surface."
+operation = "receipt.openFolder"
+transport = "host-ui"
+input = "none"
+output = "browser-ui"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.browser.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

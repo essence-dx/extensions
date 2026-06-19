@@ -1,0 +1,7 @@
+{
+  "name": "dev.dx.browser",
+  "description": "DX Browser native messaging host",
+  "path": "{{DX_NATIVE_HOST_PATH}}",
+  "type": "stdio",
+  "allowed_extensions": ["dx-browser-command-center@dx.dev"]
+}

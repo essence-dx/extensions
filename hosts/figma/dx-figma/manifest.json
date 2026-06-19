@@ -1,0 +1,19 @@
+{
+  "name": "DX Command Center",
+  "id": "dx-figma-command-center-development",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "main.js",
+  "ui": "ui.html",
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "devAllowedDomains": []
+  },
+  "menu": [
+    { "name": "Status", "command": "show-status" },
+    { "name": "Assets", "command": "search-assets" },
+    { "separator": true },
+    { "name": "Receipts", "command": "copy-receipts-path" }
+  ]
+}

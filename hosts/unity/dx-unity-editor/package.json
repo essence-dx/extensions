@@ -1,0 +1,10 @@
+{
+  "name": "dev.dx.unity-command-center",
+  "displayName": "DX Unity Editor Command Center",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "DX command center for Unity Editor status, asset search, and receipt paths.",
+  "author": {
+    "name": "DX"
+  }
+}

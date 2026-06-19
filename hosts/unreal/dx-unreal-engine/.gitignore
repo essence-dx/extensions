@@ -1,0 +1,9 @@
+/Binaries/
+/Intermediate/
+/Saved/
+/DerivedDataCache/
+*.sln
+*.xcodeproj
+*.opensdf
+*.sdf
+*.suo

@@ -1,0 +1,6 @@
+/.clasp.json
+/.clasprc.json
+/build/
+/dist/
+/deploy/
+*.zip

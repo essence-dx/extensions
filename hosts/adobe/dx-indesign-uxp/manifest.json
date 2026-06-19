@@ -1,0 +1,35 @@
+{
+  "manifestVersion": 5,
+  "id": "dx.indesign.command-center.development",
+  "name": "DX Command Center",
+  "version": "0.1.0",
+  "main": "index.html",
+  "host": {
+    "app": "ID",
+    "minVersion": "18.5.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "dxCommandCenterPanel",
+      "label": {
+        "default": "DX Command Center"
+      }
+    },
+    {
+      "type": "command",
+      "id": "dxShowStatus",
+      "label": {
+        "default": "Show DX Status"
+      }
+    },
+    {
+      "type": "command",
+      "id": "dxShowReceipts",
+      "label": {
+        "default": "Show DX Receipt Path"
+      }
+    }
+  ],
+  "requiredPermissions": {}
+}

@@ -1,0 +1,189 @@
+# DX Extensions TODO
+
+- [x] Add generated TypeScript declarations from `schemas/dx.extension.manifest.schema.json` for the shared extension manifest contract.
+- [x] Add the first browser extension host scaffold after the VS Code manifest contract is stable.
+- [x] Add native messaging protocol tests before browser sidecar execution.
+- [x] Add the first VS Code command-plan allowlist test.
+- [x] Add VS Code host-action parity across manifest actions, command plans, command contributions, and activation events.
+- [x] Add development native-host manifest templates and guarded user-scoped install/uninstall wrappers.
+- [x] Add typed browser native-messaging transport boundary.
+- [x] Harden shared manifest policy for entrypoint args, receipt paths, metadata-only receipts, signing checksums, and browser permission parity.
+- [x] Add the first real DX browser native-host executable with typed native-messaging framing.
+- [x] Wire browser UI click handlers to typed background dispatch for native-host and host-ui actions.
+- [x] Add a process-level browser native-host binary smoke test through the JavaScript transport boundary.
+- [x] Add a semantic official-registry validator before creating more official extension folders.
+- [x] Add a machine-checkable extension readiness ledger before claiming release readiness for official extensions.
+- [x] Add ignored source-level readiness receipts written after guarded `j1` verification completes.
+- [x] Add loaded-host preflight receipts that verify package-output hashes without claiming host execution.
+- [x] Add platform host-discovery receipts for every official adapter with local-tooling, manual-only, and cloud-service status buckets.
+- [x] Add an extension progress report for created adapters, package-output proofs, preflight receipts, and release-stage gaps.
+- [x] Count Affinity content-package receipts as package-output proof in the extension progress report.
+- [x] Add an obligation-complete release evidence gate matrix covering host execution, package output, signing, checksum, distribution proof, manifest-required service proof, and host-specific proof kinds for every official adapter.
+- [x] Add a release evidence gap report for missing release proof kinds and receipt paths from the gate matrix.
+- [x] Split release evidence gap reporting between per-kind receipt obligations and unique receipt paths.
+- [x] Add a guarded creative-host package-output checksum receipt writer for Blender, Sketch, and DaVinci Resolve.
+- [x] Add a guarded generic package-output checksum receipt writer for adapters with existing package-output receipts.
+- [x] Add a strict package-signing receipt writer that requires explicit signature verification proof JSON.
+- [x] Add a guarded public release package checksum receipt writer that links release artifacts back to package-output proof.
+- [x] Require public release package checksum proof before package-signing receipts can become release-valid.
+- [x] Add guarded Office and Google Workspace public release package checksum receipts from package-output ZIP artifacts.
+- [x] Add guarded public release package checksum workflow for current standard package-output adapters while leaving Browser and stale Zed package evidence on separate refresh paths.
+- [x] Harden release evidence gap reporting so fake public checksum/signing claims remain weak without the required hash-chain receipt schema.
+- [x] Add a registry-aware distribution review receipt writer for marketplace, community, AppSource, Canva, gallery, OAuth, and generic distribution proof.
+- [x] Harden release evidence gap reporting so fake review receipt files remain weak without approved review claims and linked release-package evidence.
+- [x] Add a registry-aware generic local-service receipt writer that links loopback metadata proof for manifest local-service actions to loaded-host evidence.
+- [x] Harden release evidence gap reporting so fake local-service receipts remain weak without loaded-host linkage and metadata-only service proof.
+- [x] Add an official extension starter gate before creating professional-software host folders.
+- [x] Add a validated professional host target catalog before creating more software-specific extension folders.
+- [x] Add source-level browser native-host DX CLI command boundary support.
+- [x] Execute browser native-host DX CLI command plans through the installed Rust native host.
+- [x] Add Windows PowerShell and macOS/Linux shell manifest-only native-host install/uninstall proof for Chrome, Edge, and Firefox.
+- [x] Wire a profileless loaded-background native-host receipt smoke into the guarded browser native-host `j1` wrapper.
+- [x] Wire Browser Command Center host-free Chrome, Edge, and Firefox dist package-output checksum receipts into the guarded build wrapper.
+- [x] Add guarded browser native-host release package receipts for rendered Chrome, Edge, and Firefox native messaging manifests.
+- [x] Add a strict Browser loaded-profile receipt writer for future real Chrome, Microsoft Edge, and Firefox profile proof.
+- [x] Add a guarded Browser loaded-profile proof receipt importer requiring explicit real-profile proof JSON.
+- [x] Add operator proof templates for Chrome, Microsoft Edge, and Firefox loaded-profile proof input.
+- [x] Derive Browser release-gap blockers from missing and weak receipt evidence so captured Edge proof does not remain a stale blocker.
+- [x] Add browser `DX Forge Packages` and `DX Build Graph` native-host command plans backed by fixed `dx forge packages --json` and `dx graph --json` argv.
+- [x] Add source-level loaded Chromium command smoke for trusted sender dispatch, Forge Packages, Build Graph, approved Doctor, and receipt UI actions.
+- [ ] Prove installed browser native-host binary execution for `dx forge packages --json` and `dx graph --json` through the guarded native-host smoke wrapper.
+- [x] Add a VS Code `DX: Search Icons` command backed by validated `dx icon search` argv.
+- [x] Add VS Code receipt-path host actions for opening/copying `.dx/receipts` with source-level missing-folder and host-operation failure guards.
+- [x] Add a VS Code `DX: List Forge Packages` command backed by fixed `dx forge packages --json` argv.
+- [x] Add a VS Code `DX: Show Build Graph` command backed by fixed `dx graph --json` argv.
+- [x] Add a VS Code `DX: Show Latest Check Receipt` command backed by fixed `dx check --latest-receipt --json` argv.
+- [x] Add a VS Code `DX: Show Check Editor State` command backed by fixed `dx check editor --json` argv.
+- [x] Add a guarded source-level VS Code loaded-host smoke runner for installed VS Code Extension Development Host command-registration checks.
+- [x] Add VS Code package README and `.vscodeignore` guards before VSIX packaging proof.
+- [x] Wire VS Code guarded `.vsix` package-output checksum receipt writing into `package:vscode:j1`.
+- [ ] Next ecosystem slice: finish loaded-host proof for existing editor/browser scaffolds before adding another official host folder.
+- [ ] Capture loaded VS Code smoke receipt by running `npm run smoke:vscode-loaded-host:j1`, then add Cursor/Windsurf runners and receipts; keep VS Code loaded-host status unclaimed until receipts exist.
+- [x] Add a guarded VS Code loaded-host proof JSON importer and operator-proof template while keeping real loaded-host receipt capture separate.
+- [ ] Add loaded Chrome, Microsoft Edge, and Firefox dispatch receipt paths against the installed real native-host executable.
+- [ ] Capture Edge-specific loaded dispatch proof with explicit Edge extension id and Edge native-host manifest receipt.
+- [ ] Keep signing/checksum/package/marketplace proof as release gates, not source-level completion.
+- [ ] Promote extension readiness entries beyond `source-level` only after loaded-host, package, signing, checksum, and distribution receipts exist.
+- [x] Add source-level Zed slash-command command-center adapter scaffold.
+- [x] Add Zed WebAssembly build-output proof for ignored `extension.wasm`.
+- [x] Add Zed host-free WebAssembly package-output checksum receipt.
+- [x] Add guarded Zed loaded dev-extension receipt writing for explicit proof JSON.
+- [x] Harden Zed loaded dev-extension proof so release evidence requires installed source/index/log/WASM proof instead of slash-command availability.
+- [ ] Prove loaded Zed dev-extension smoke with installed source, index, log, and package-matched WASM receipts.
+- [ ] Add loaded Zed local-service proof, extension gallery package proof, public release checksum proof, and release packaging proof.
+- [x] Add source-level Blender command-center adapter scaffold.
+- [x] Add Blender package-layout output proof and host-free checksum receipt.
+- [x] Add guarded Blender loaded add-on and add-on-install receipt writing for explicit proof JSON.
+- [ ] Prove loaded Blender add-on install/smoke with metadata-only operator receipts.
+- [ ] Add Blender package signing, public release artifact checksum proof, and release packaging proof.
+- [x] Add source-level Obsidian desktop command-center adapter scaffold.
+- [x] Add Obsidian bundle-output proof through a TypeScript build helper without committing generated `main.js`.
+- [x] Add Obsidian host-free package-output checksum receipt for host-loadable plugin files.
+- [x] Add guarded Obsidian loaded test-vault receipt writing for explicit proof JSON.
+- [ ] Prove loaded Obsidian test-vault smoke with metadata-only command receipts.
+- [ ] Add Obsidian release assets, checksum receipts, and community plugin review proof.
+- [x] Add source-level Figma command-center adapter scaffold.
+- [x] Add Figma typed UI message validation before plugin command dispatch.
+- [x] Add Figma plugin build-output proof for generated `main.js`.
+- [x] Add Figma host-free package-output checksum receipt for host-loadable plugin files.
+- [x] Add a guarded Figma loaded-host and plugin-ID receipt writer requiring explicit proof JSON.
+- [x] Add a guarded application loaded-host receipt writer for Zed, Blender, Obsidian, Canva, and Sketch requiring explicit proof JSON.
+- [ ] Prove loaded Figma desktop plugin smoke with metadata-only command receipts.
+- [ ] Add Figma generated plugin ID, live local-service proof, checksum receipts, and Community review proof.
+- [x] Add source-level Canva Apps SDK command-center adapter scaffold.
+- [x] Add Canva app build-output proof for generated `app.js`.
+- [x] Add Canva host-free package-output checksum receipt for host-loadable app files.
+- [x] Add guarded Canva development-app receipt writing for explicit proof JSON.
+- [ ] Prove development Canva app smoke with metadata-only command receipts.
+- [ ] Add Canva live local-service proof, checksum receipts, Canva review evidence, and release proof.
+- [x] Add source-level Sketch plugin command-center adapter scaffold.
+- [x] Add Sketch plugin build-output proof for the generated `.sketchplugin` bundle.
+- [x] Add Sketch host-free package-output checksum receipt for the generated `.sketchplugin` bundle.
+- [x] Add guarded Sketch loaded-plugin and optional sketchtool receipt writing for explicit proof JSON.
+- [ ] Prove loaded Sketch plugin smoke with metadata-only command and document-safe receipts.
+- [ ] Add Sketch sketchtool run proof, local-service proof, release package proof, signing, public release artifact checksum proof, notarization, Plugin Directory review, and release proof.
+- [x] Add source-level Photoshop UXP command-center adapter scaffold.
+- [x] Add shared Adobe UXP package-layout build proof for Photoshop, Premiere Pro, and InDesign.
+- [x] Add host-free Adobe UXP package-output checksum receipts for Photoshop, Premiere Pro, and InDesign.
+- [x] Add a guarded Adobe UXP loaded-host receipt writer requiring explicit real-host proof JSON.
+- [x] Mark Adobe UXP host-UI receipt actions as loaded-host proof-gated instead of local-service runtime proof-gated.
+- [x] Add guarded Adobe UXP CCX package receipts for Photoshop, Premiere Pro, and InDesign explicit `.ccx` artifacts.
+- [ ] Prove loaded Photoshop UXP smoke through UXP Developer Tool with metadata-only panel and command receipts.
+- [ ] Add Photoshop document-safe runtime proof, local-service proof, Adobe Developer Console plugin ID, `.ccx` package proof, signing, release checksum proof, Creative Cloud review, and release proof.
+- [x] Add source-level Premiere Pro UXP command-center adapter scaffold.
+- [ ] Prove loaded Premiere Pro UXP smoke with metadata-only panel, command, and project-safe receipt metadata.
+- [ ] Add Premiere Pro project-safe runtime proof, local-service proof, Adobe Developer Console/plugin ID, `.ccx` package proof, signing, release checksum proof, Creative Cloud review, native SDK/hybrid plugin proof, and release proof.
+- [x] Add source-level InDesign UXP command-center adapter scaffold.
+- [ ] Prove loaded InDesign UXP smoke with metadata-only panel, command, and document-safe receipt metadata.
+- [ ] Add InDesign document-safe runtime proof, local-service proof, Adobe Developer Console/plugin ID, `.ccx` package proof, signing, release checksum proof, Creative Cloud review, native SDK/hybrid plugin proof, and release proof.
+- [x] Add source-level DaVinci Resolve scripting command-center adapter scaffold.
+- [x] Add DaVinci Resolve host-free package-output checksum receipt.
+- [x] Add a guarded DaVinci Resolve loaded-host and workflow-integration receipt writer requiring explicit real-host proof JSON.
+- [x] Harden the DaVinci Resolve Developer documentation proof wrapper with process guard, writer test, and generated-output ignore check.
+- [ ] Prove loaded DaVinci Resolve script smoke with metadata-only command receipts.
+- [ ] Add DaVinci Resolve bundled Developer documentation version capture, read-only project metadata proof, local-service proof, Workflow Integration proof, signing, public release artifact checksum proof, and release proof.
+- [x] Add source-level IntelliJ Platform command-center plugin scaffold.
+- [x] Add IntelliJ Platform host-free Gradle source-layout checksum receipt.
+- [x] Add a guarded IntelliJ Platform sandbox loaded-host receipt writer requiring explicit real-host proof JSON.
+- [x] Add a guarded IntelliJ Platform Plugin Verifier receipt writer and gap-report classifier requiring explicit verifier proof JSON.
+- [x] Add operator proof templates for IntelliJ sandbox IDE and Plugin Verifier proof input.
+- [ ] Prove IntelliJ Platform sandbox IDE smoke with metadata-only command receipts.
+- [ ] Run IntelliJ Platform Plugin Verifier proof, then add local-service proof, signing, checksum receipts, JetBrains Marketplace review evidence, and release proof.
+- [x] Add source-level Visual Studio SDK command-center VSIX scaffold.
+- [x] Add Visual Studio host-free VSIX source-layout checksum receipt.
+- [x] Add a guarded Visual Studio Experimental Instance loaded-host receipt writer requiring explicit real-host proof JSON.
+- [x] Add an operator proof template for Visual Studio Experimental Instance proof input.
+- [ ] Prove Visual Studio Experimental Instance smoke with metadata-only command receipts.
+- [ ] Add Visual Studio VSIX package proof, local-service proof, signing, checksum receipts, Marketplace review evidence, and release proof.
+- [x] Add source-level Unity Editor command-center package scaffold.
+- [x] Add Unity Editor host-free package-layout checksum receipt.
+- [x] Add a guarded Unity Editor loaded-host receipt writer requiring explicit real-host proof JSON.
+- [x] Add a guarded Unity Editor project-import receipt writer and gap-report classifier requiring explicit import proof JSON.
+- [x] Add operator proof templates for Unity loaded-host and project-import proof input.
+- [ ] Prove loaded Unity Editor test-project smoke with metadata-only command receipts.
+- [ ] Run Unity project import proof, then add Unity package tarball/checksum proof, local-service proof, signing, Asset Store/distribution review evidence, and release proof.
+- [x] Add source-level Unreal Engine command-center editor plugin scaffold.
+- [x] Add Unreal Engine host-free source-plugin package-layout checksum receipt.
+- [x] Add a guarded Unreal Engine loaded-host receipt writer requiring explicit real-host proof JSON.
+- [x] Add a guarded Unreal Engine project-enablement receipt writer and gap-report classifier requiring explicit enablement proof JSON.
+- [x] Add operator proof templates for Unreal loaded-host and project-enablement proof input.
+- [ ] Prove loaded Unreal sample-project smoke with metadata-only command receipts.
+- [ ] Run Unreal project enablement proof, then add package signing, checksum receipts, local-service proof, Fab/Marketplace review evidence, and release proof.
+- [x] Add source-level Google Workspace Add-on command-center scaffold.
+- [x] Add Google Workspace Apps Script output proof for `appsscript.json` and `Code.gs`.
+- [x] Add Google Workspace Apps Script host-free package-output checksum receipt.
+- [x] Add a guarded Google Workspace test deployment, cloud-service, and workspace-file smoke receipt writer requiring explicit proof JSON.
+- [x] Add Google Workspace public release package checksum receipt for the generated Apps Script package ZIP.
+- [ ] Prove test Workspace file smoke with metadata-only command receipts.
+- [ ] Add Apps Script deployment proof, OAuth consent/review evidence, cloud-service proof, Marketplace review evidence, signing, checksum receipts, and release proof.
+- [x] Add source-level Affinity content add-on bridge scaffold.
+- [x] Add a strict Affinity content-package receipt writer for real importable content artifacts.
+- [ ] Capture Affinity content-package proof from real `.afassets`, `.affont`, `.afpalette`, `.afstyles`, or `.aftemplate` artifacts.
+- [x] Add Affinity public release package checksum receipt for the generated content package ZIP.
+- [x] Add a guarded Affinity manual-import receipt writer requiring explicit human import proof metadata.
+- [x] Cross-check Affinity manual-import artifact paths and content types against the content-package receipt.
+- [ ] Prove manual Affinity content import smoke with metadata-only receipts.
+- [ ] Add Affinity manual import, signing, loaded-app, public distribution, release proof, and Photoshop-compatible filter plugin proof only after a real native/filter plugin exists; keep native SDK claims deferred.
+- [x] Add source-level Excel task-pane command-center adapter scaffold.
+- [x] Mark Office host-UI receipt-copy plans as not requiring local-service runtime proof.
+- [x] Add shared typed Office local-service request boundary for proof-gated task-pane status/search actions.
+- [x] Add hosted Office task-pane asset build proof for Excel, PowerPoint, and Word.
+- [x] Add Office sideload manifest output proof for Excel, PowerPoint, and Word.
+- [x] Add Office host-free package-output checksum receipts for Excel, PowerPoint, and Word.
+- [x] Add Office public release package checksum receipts for Excel, PowerPoint, and Word generated package ZIPs.
+- [x] Add a guarded Office sideloaded-host receipt writer for Excel, PowerPoint, and Word metadata-only task-pane proof.
+- [x] Add a guarded Office local-service receipt writer for Excel, PowerPoint, and Word metadata-only request/response proof.
+- [ ] Prove sideloaded Excel task-pane smoke with metadata-only command receipts.
+- [ ] Add Excel local-service proof and AppSource readiness proof.
+- [x] Add source-level PowerPoint task-pane command-center adapter scaffold.
+- [ ] Prove sideloaded PowerPoint task-pane smoke with metadata-only command receipts.
+- [ ] Add PowerPoint local-service proof and AppSource readiness proof.
+- [x] Add source-level Word task-pane command-center adapter scaffold.
+- [ ] Prove sideloaded Word task-pane smoke with metadata-only command receipts.
+- [ ] Add Word local-service proof and AppSource readiness proof.
+- [ ] Prove loaded-browser dispatch against the installed real native-host executable.
+- [ ] Prove loaded Microsoft Edge dispatch against the installed real native-host executable with an explicit Edge extension id and Edge native-host manifest receipt.
+- [ ] Add Chrome, Microsoft Edge, and Firefox loaded-extension smoke tests.
+- [ ] Add Microsoft Edge Add-ons distribution/package-review proof, signing/checksum receipts, and release packaging proof.
+- [ ] Add loaded VS Code, Cursor, and Windsurf smoke receipts.
+- [ ] Add package signing and checksum receipts before public release packaging.

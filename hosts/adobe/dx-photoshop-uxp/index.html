@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DX Command Center</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 12px;
+      }
+
+      main {
+        display: grid;
+        gap: 10px;
+        max-width: 360px;
+      }
+
+      h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      button,
+      input {
+        box-sizing: border-box;
+        font: inherit;
+        width: 100%;
+      }
+
+      button {
+        min-height: 32px;
+      }
+
+      output {
+        display: block;
+        min-height: 48px;
+        overflow-wrap: anywhere;
+      }
+    </style>
+    <script src="./src/messages.ts"></script>
+    <script src="./src/commandPlans.ts"></script>
+    <script src="./src/index.ts"></script>
+  </head>
+  <body>
+    <main>
+      <h1>DX Command Center</h1>
+      <button type="button" data-command="dx.photoshop.show_status">Show DX Status</button>
+      <input type="search" name="asset-query" autocomplete="off" placeholder="Search assets">
+      <button type="button" data-command="dx.photoshop.search_assets">Search DX Assets</button>
+      <button type="button" data-command="dx.photoshop.copy_receipts_path">Copy DX Receipts Path</button>
+      <output id="dx-output" aria-live="polite"></output>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "DX.Unity.Editor.Tests",
+  "rootNamespace": "DX.Unity.Editor.Tests",
+  "references": ["DX.Unity.Editor"],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

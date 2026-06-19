@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DX Command Center</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 16px;
+      }
+
+      main {
+        display: grid;
+        gap: 10px;
+      }
+
+      button,
+      input {
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        box-sizing: border-box;
+        font: inherit;
+        min-height: 32px;
+        padding: 6px 8px;
+        width: 100%;
+      }
+
+      button {
+        background: var(--figma-color-bg-brand);
+        color: var(--figma-color-text-onbrand);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <button type="button" data-command="dx.figma.show_status">Status</button>
+      <input id="asset-query" type="search" placeholder="Search DX assets" />
+      <button type="button" data-command="dx.figma.search_assets">Assets</button>
+      <button type="button" data-command="dx.figma.copy_receipts_path">Receipts</button>
+    </main>
+    <script>
+      const queryInput = document.getElementById("asset-query");
+
+      document.querySelectorAll("[data-command]").forEach((button) => {
+        button.addEventListener("click", () => {
+          parent.postMessage(
+            {
+              pluginMessage: {
+                type: button.dataset.command,
+                query: queryInput.value
+              }
+            },
+            "*"
+          );
+        });
+      });
+
+      window.onmessage = (event) => {
+        const message = event.data.pluginMessage;
+        if (message?.type === "dx.figma.receipts_path") {
+          navigator.clipboard.writeText(message.message);
+        }
+      };
+    </script>
+  </body>
+</html>

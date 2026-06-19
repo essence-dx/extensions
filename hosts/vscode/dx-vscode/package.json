@@ -1,0 +1,137 @@
+{
+  "name": "dx-vscode",
+  "displayName": "DX Command Center",
+  "version": "0.1.0",
+  "publisher": "dx-runtime",
+  "description": "Official VS Code bridge for DX tools, receipts, and local command-center workflows.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:dx.openCommandCenter",
+    "onCommand:dx.copyReceiptsPath",
+    "onCommand:dx.doctor",
+    "onCommand:dx.listForgePackages",
+    "onCommand:dx.openReceipts",
+    "onCommand:dx.searchIcons",
+    "onCommand:dx.showBuildGraph",
+    "onCommand:dx.showCheckEditorState",
+    "onCommand:dx.showLatestCheckReceipt",
+    "onCommand:dx.showStatus"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dx.openCommandCenter",
+        "title": "DX: Open Command Center",
+        "category": "DX"
+      },
+      {
+        "command": "dx.copyReceiptsPath",
+        "title": "DX: Copy Receipts Path",
+        "category": "DX"
+      },
+      {
+        "command": "dx.doctor",
+        "title": "DX: Run Doctor",
+        "category": "DX"
+      },
+      {
+        "command": "dx.listForgePackages",
+        "title": "DX: List Forge Packages",
+        "category": "DX"
+      },
+      {
+        "command": "dx.openReceipts",
+        "title": "DX: Open Receipts Folder",
+        "category": "DX"
+      },
+      {
+        "command": "dx.searchIcons",
+        "title": "DX: Search Icons",
+        "category": "DX"
+      },
+      {
+        "command": "dx.showBuildGraph",
+        "title": "DX: Show Build Graph",
+        "category": "DX"
+      },
+      {
+        "command": "dx.showCheckEditorState",
+        "title": "DX: Show Check Editor State",
+        "category": "DX"
+      },
+      {
+        "command": "dx.showLatestCheckReceipt",
+        "title": "DX: Show Latest Check Receipt",
+        "category": "DX"
+      },
+      {
+        "command": "dx.showStatus",
+        "title": "DX: Show Status",
+        "category": "DX"
+      }
+    ],
+    "configuration": {
+      "title": "DX",
+      "properties": {
+        "dx.cliPath": {
+          "type": "string",
+          "default": "dx",
+          "scope": "machine-overridable",
+          "description": "Path to the DX CLI executable."
+        },
+        "dx.commandTimeoutSeconds": {
+          "type": "number",
+          "default": 90,
+          "minimum": 5,
+          "maximum": 900,
+          "scope": "window",
+          "description": "Maximum time to wait for a single DX command."
+        },
+        "dx.autoRevealOutput": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "Reveal the DX output channel when commands run."
+        }
+      }
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "DX can show safe UI in untrusted workspaces, but command execution requires workspace trust.",
+      "restrictedConfigurations": [
+        "dx.cliPath"
+      ]
+    }
+  },
+  "scripts": {
+    "verify:package": "node --experimental-strip-types ../../../scripts/verify-vscode-package.ts package.json",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit --pretty false",
+    "compile": "tsc -p ./tsconfig.json --pretty false",
+    "test:command-plans": "npm run compile && node --experimental-strip-types tests/commandPlans.test.ts",
+    "test:command-center-dispatch": "npm run compile && node --experimental-strip-types tests/commandCenterDispatch.test.ts",
+    "test:icon-search-command": "npm run compile && node --experimental-strip-types tests/iconSearchCommand.test.ts",
+    "test:receipt-actions": "npm run compile && node --experimental-strip-types tests/receiptActions.test.ts",
+    "test:manifest-command-parity": "npm run compile && node --experimental-strip-types tests/manifestCommandParity.test.ts",
+    "test:command-surface": "node --experimental-strip-types tests/commandSurface.test.ts",
+    "check": "npm --prefix ../../.. run check:vscode:j1",
+    "internal:check": "node --experimental-strip-types ../../../scripts/require-root-j1-wrapper.ts && npm run verify:package && npm run typecheck && npm run test:command-plans && npm run test:command-center-dispatch && npm run test:icon-search-command && npm run test:receipt-actions && npm run test:manifest-command-parity && npm run test:command-surface",
+    "vscode:prepublish": "node --experimental-strip-types ../../../scripts/verify-vscode-prepublish.ts package.json",
+    "package": "npm --prefix ../../.. run package:vscode:j1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.6.1",
+    "typescript": "^5.8.3"
+  }
+}

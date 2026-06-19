@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DX Command Center</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  </head>
+  <body>
+    <main>
+      <button type="button" data-command="dx.excel.show_status">Status</button>
+      <input id="asset-query" type="search" placeholder="Search DX assets" />
+      <button type="button" data-command="dx.excel.search_assets">Assets</button>
+      <button type="button" data-command="dx.excel.copy_receipts_path">Receipts</button>
+      <p id="dx-status" role="status"></p>
+    </main>
+    <script type="module" src="../src/taskpane.ts"></script>
+  </body>
+</html>

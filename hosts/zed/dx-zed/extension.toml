@@ -1,0 +1,18 @@
+id = "dx-command-center"
+name = "DX Command Center"
+version = "0.1.0"
+schema_version = 1
+authors = ["DX"]
+description = "DX command-plan slash commands for Zed."
+
+[slash_commands.dx-status]
+description = "Show DX status metadata"
+requires_argument = false
+
+[slash_commands.dx-assets]
+description = "Search DX assets through the future local-service bridge"
+requires_argument = true
+
+[slash_commands.dx-receipts]
+description = "Show DX receipt path metadata"
+requires_argument = false

@@ -1,0 +1,41 @@
+{
+  "name": "dx-browser",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Official DX browser extension host bridge.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p ./tsconfig.json --noEmit --pretty false",
+    "compile": "tsc -p ./tsconfig.json --pretty false",
+    "test:command-plans": "npm run compile && node --experimental-strip-types tests/commandPlans.test.ts",
+    "test:protocol": "npm run compile && node --experimental-strip-types tests/protocol.test.ts",
+    "test:manifests": "node --experimental-strip-types tests/manifestPolicy.test.ts",
+    "test:manifest-protocol": "npm run compile && node --experimental-strip-types tests/manifestProtocol.test.ts",
+    "test:native-surface": "node --experimental-strip-types tests/nativeSurface.test.ts",
+    "test:native-host-manifests": "node --experimental-strip-types tests/nativeHostManifest.test.ts",
+    "test:native-host-install-proof": "node --experimental-strip-types tests/nativeHostInstallProof.test.ts",
+    "test:native-host-shell-install-proof": "node --experimental-strip-types tests/nativeHostShellInstallProof.test.ts",
+    "test:native-host-shell-uninstall-proof": "node --experimental-strip-types tests/nativeHostShellUninstallProof.test.ts",
+    "test:native-host-transport": "npm run compile && node --experimental-strip-types tests/nativeHostTransport.test.ts",
+    "test:native-host-binary-smoke": "npm run compile && node --experimental-strip-types tests/nativeHostBinarySmoke.test.ts",
+    "test:loaded-browser-command-smoke": "npm run compile && node --experimental-strip-types tests/loadedBrowserCommandSmoke.test.ts",
+    "test:loaded-browser-dispatch-smoke": "npm run compile && node --experimental-strip-types tests/loadedBrowserDispatchSmoke.test.ts",
+    "test:background-dispatch": "npm run compile && node --experimental-strip-types tests/backgroundDispatch.test.ts",
+    "test:background-entrypoints": "npm run compile && node --experimental-strip-types tests/backgroundEntrypoints.test.ts",
+    "test:ui-dispatch": "npm run compile && node --experimental-strip-types tests/uiDispatch.test.ts",
+    "test:ui-render": "npm run compile && node --experimental-strip-types tests/uiRender.test.ts",
+    "test:build-output": "node --experimental-strip-types tests/buildOutput.test.ts",
+    "check": "npm --prefix ../../.. run check:browser:j1",
+    "internal:check": "node --experimental-strip-types ../../../scripts/require-root-j1-wrapper.ts && npm run typecheck && npm run test:command-plans && npm run test:protocol && npm run test:manifests && npm run test:manifest-protocol && npm run test:native-surface && npm run test:native-host-manifests && npm run test:native-host-install-proof && npm run test:native-host-shell-install-proof && npm run test:native-host-shell-uninstall-proof && npm run test:native-host-transport && npm run test:loaded-browser-command-smoke && npm run test:background-dispatch && npm run test:background-entrypoints && npm run test:ui-dispatch && npm run test:ui-render",
+    "build:artifacts": "npm --prefix ../../.. run build:browser:j1",
+    "internal:build:artifacts": "node --experimental-strip-types ../../../scripts/require-root-j1-wrapper.ts && node --experimental-strip-types scripts/build.ts",
+    "build": "npm --prefix ../../.. run build:browser:j1"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.0",
+    "typescript": "^5.9.3"
+  }
+}

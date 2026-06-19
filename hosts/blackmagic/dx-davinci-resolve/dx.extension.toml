@@ -1,0 +1,110 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.davinci-resolve.command-center"
+name = "DX DaVinci Resolve Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official DaVinci Resolve scripting adapter for DX status, project context, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["davinci-resolve"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "host_script"
+command = "resolve-scripting"
+args = []
+cwd = "${host.project}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "resolve-scripting"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "blackmagic.resolve.scripts"
+required = true
+scope = ["python", "lua"]
+reason = "Expose source-level Python and Lua Resolve scripting command plans."
+
+[[capabilities]]
+id = "blackmagic.resolve.project.read"
+required = true
+scope = ["project-metadata"]
+reason = "Reserve read-only Resolve project metadata inspection when the host context is available."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Resolve scripting surface."
+
+[[host_actions]]
+id = "dx.davinci-resolve.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Report DX status intent from the Resolve scripting surface."
+operation = "dx.status"
+transport = "resolve-script"
+input = "none"
+output = "resolve-script-notice"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["blackmagic.resolve.scripts"]
+
+[[host_actions]]
+id = "dx.davinci-resolve.inspect_project"
+group = "project"
+label = "Inspect Resolve Project"
+description = "Prepare read-only Resolve project metadata inspection when the host context is available."
+operation = "resolve.project.inspect"
+transport = "resolve-script"
+input = "none"
+output = "metadata-only"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["blackmagic.resolve.scripts", "blackmagic.resolve.project.read"]
+
+[[host_actions]]
+id = "dx.davinci-resolve.show_receipts"
+group = "receipts"
+label = "Show DX Receipts Path"
+description = "Show the local DX receipt folder path from Resolve."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "resolve-script-notice"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["blackmagic.resolve.scripts", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.davinci-resolve.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

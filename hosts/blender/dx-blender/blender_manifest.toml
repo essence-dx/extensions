@@ -1,0 +1,11 @@
+schema_version = "1.0.0"
+id = "dx_blender_command_center"
+version = "0.1.0"
+name = "DX Blender Command Center"
+tagline = "Run approved DX commands from Blender"
+maintainer = "DX"
+type = "add-on"
+blender_version_min = "4.2.0"
+license = ["SPDX:MIT"]
+website = "https://dx.dev"
+tags = ["Pipeline", "System"]

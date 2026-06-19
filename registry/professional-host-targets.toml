@@ -1,0 +1,422 @@
+schema = "dx.professional_host_targets"
+manifest_version = 1
+
+[[targets]]
+id = "vscode.extension-api"
+name = "Visual Studio Code Extension API"
+vendor = "Microsoft"
+host_family = "editor"
+official_docs = "https://code.visualstudio.com/api"
+extension_surface = "commands views webviews configuration and extension host activation"
+adapter_strategy = "reuse the DX VS Code command-center adapter and keep host actions mapped to typed DX command plans"
+first_proof = "run the source-level VS Code Extension Development Host smoke runner from hosts/vscode/dx-vscode and capture metadata-only command registration receipt"
+recommended_priority = "active-scaffold"
+difficulty_percent = 25
+dx_surfaces = ["commands", "forge", "icons", "fonts", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "browser.chrome-extensions"
+name = "Chrome Extensions"
+vendor = "Google"
+host_family = "browser"
+official_docs = "https://developer.chrome.com/docs/extensions"
+extension_surface = "Manifest V3 extension service worker action side panel options and native messaging"
+adapter_strategy = "reuse the DX browser command center with a signed native-host manifest and typed native messaging protocol"
+first_proof = "load unpacked Chromium build with development native-host manifest and capture command receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 35
+dx_surfaces = ["commands", "icons", "media", "local-service", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "browser.edge-extensions"
+name = "Microsoft Edge Extensions"
+vendor = "Microsoft"
+host_family = "browser"
+official_docs = "https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/"
+extension_surface = "Chromium Manifest V3 extension APIs Microsoft Edge Add-ons distribution Edge native messaging registration action side panel and options surfaces"
+adapter_strategy = "reuse the DX browser command center while treating Edge extension id Edge native-host registration Edge Add-ons packaging and loaded Edge smoke receipts as separate first-class distribution proof"
+first_proof = "load the unpacked Edge build with an explicit Edge extension id and development native-host manifest invoke allowlisted native-host dispatch and capture Edge-specific command receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 40
+dx_surfaces = ["commands", "icons", "media", "local-service", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "Edge extension-id and native-host allowlist receipt", "Edge Add-ons package and review receipt", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "browser.firefox-webextensions"
+name = "Firefox WebExtensions"
+vendor = "Mozilla"
+host_family = "browser"
+official_docs = "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions"
+extension_surface = "WebExtensions background scripts sidebar action options and native messaging"
+adapter_strategy = "reuse the DX browser command center while keeping Firefox manifest and native-host installation proof separate"
+first_proof = "load temporary Firefox add-on with development native-host manifest and capture command receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 42
+dx_surfaces = ["commands", "icons", "media", "local-service", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "zed.extensions"
+name = "Zed Extensions"
+vendor = "Zed Industries"
+host_family = "editor"
+official_docs = "https://zed.dev/docs/extensions"
+extension_surface = "Zed extension manifest Rust WebAssembly slash commands MCP servers and extension gallery"
+adapter_strategy = "maintain an official experimental slash-command scaffold that exposes DX command-plan metadata while deferring process execution and local-service calls until loaded-host proof"
+first_proof = "install a local Zed dev extension and capture metadata-only command availability"
+recommended_priority = "active-scaffold"
+difficulty_percent = 55
+dx_surfaces = ["commands", "forge", "icons", "fonts", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "obsidian.plugins"
+name = "Obsidian Plugins"
+vendor = "Obsidian"
+host_family = "knowledge-workspace"
+official_docs = "https://docs.obsidian.md/"
+extension_surface = "TypeScript plugin commands views settings ribbons and vault-local files"
+adapter_strategy = "build a vault-local DX command center with explicit workspace trust and no raw shell dispatch"
+first_proof = "load a development plugin in a test vault and capture a command receipt without touching user notes"
+recommended_priority = "fast-proof"
+difficulty_percent = 40
+dx_surfaces = ["commands", "forge", "icons", "fonts", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "figma.plugins"
+name = "Figma Plugins"
+vendor = "Figma"
+host_family = "design"
+official_docs = "https://developers.figma.com/docs/plugins/"
+extension_surface = "Figma plugin API sandbox UI iframe document nodes variables and client storage"
+adapter_strategy = "start with asset lookup and command-palette UI that calls a typed DX service through approved network boundaries"
+first_proof = "run a development plugin from the Figma desktop app and capture asset-search receipt metadata"
+recommended_priority = "starter-candidate"
+difficulty_percent = 50
+dx_surfaces = ["icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "sketch.plugins"
+name = "Sketch Plugins"
+vendor = "Sketch"
+host_family = "design"
+official_docs = "https://developer.sketch.com/"
+extension_surface = "Sketch plugin manifests, command menu entries, script handlers, resources, sketchtool plugin runs, and plugin directory packaging"
+adapter_strategy = "maintain a source-level Sketch command scaffold that renders metadata-only DX status, asset search, document-safe metadata, and receipt plans through a future local-service boundary while document mutation, generated bundle proof, sketchtool proof, appcast updates, process launch, broad filesystem access, network access, notarization, and plugin listing proof remain deferred"
+first_proof = "load the development Sketch plugin and capture metadata-only command availability plus sketchtool loaded-host smoke receipt"
+recommended_priority = "active-scaffold"
+difficulty_percent = 58
+dx_surfaces = ["icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt", "sketchtool proof receipt", "notarization receipt", "plugin listing receipt"]
+
+[[targets]]
+id = "canva.apps-sdk"
+name = "Canva Apps SDK"
+vendor = "Canva"
+host_family = "design"
+official_docs = "https://www.canva.dev/docs/apps/"
+extension_surface = "Canva Apps SDK design editor surface asset APIs and app review flow"
+adapter_strategy = "maintain a source-level Canva Apps SDK scaffold that renders DX status, asset search, and receipt path plans through a future local-service boundary while design mutation, private asset access, external URL opening, bundle upload, app review, and release proof remain deferred"
+first_proof = "run a development Canva app and capture metadata-only command availability plus asset-search receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 62
+dx_surfaces = ["icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "affinity.content-addons"
+name = "Affinity Content Add-ons"
+vendor = "Serif"
+host_family = "design"
+official_docs = "https://affinity.help/designer2/English.lproj/pages/Addons/aboutAddons.html"
+extension_surface = "Affinity add-on import for assets brushes fonts styles swatches palettes document templates plus Affinity Photo Photoshop-compatible 64-bit filter plugin compatibility"
+adapter_strategy = "maintain a source-level Affinity content bridge for DX assets, fonts, swatches, styles, and templates while clearly deferring native SDK claims and Photoshop-compatible filter plugin proof"
+first_proof = "manually import a generated DX Affinity content pack into a test Affinity app profile and capture metadata-only import receipt"
+recommended_priority = "active-scaffold"
+difficulty_percent = 45
+dx_surfaces = ["icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission and manual import review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host manual import smoke receipt"]
+
+[[targets]]
+id = "microsoft.excel.add-ins"
+name = "Excel Office Add-ins"
+vendor = "Microsoft"
+host_family = "office"
+official_docs = "https://learn.microsoft.com/en-us/office/dev/add-ins/reference/javascript-api-for-office"
+extension_surface = "Office Add-in manifest task pane commands dialog and Excel JavaScript APIs"
+adapter_strategy = "use a web add-in task pane that talks to DX through a reviewed service boundary and avoids direct local shell access"
+first_proof = "sideload a development add-in in Excel and capture workbook-safe command receipt metadata"
+recommended_priority = "starter-candidate"
+difficulty_percent = 65
+dx_surfaces = ["commands", "media", "assets", "local-service", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "microsoft.powerpoint.add-ins"
+name = "PowerPoint Office Add-ins"
+vendor = "Microsoft"
+host_family = "office"
+official_docs = "https://learn.microsoft.com/en-us/office/dev/add-ins/reference/javascript-api-for-office"
+extension_surface = "Office Add-in manifest task pane commands dialog and PowerPoint JavaScript APIs"
+adapter_strategy = "create a DX media and icon insertion pane with typed service calls and explicit document permissions"
+first_proof = "sideload a development add-in in PowerPoint and capture slide-safe insertion receipt metadata"
+recommended_priority = "starter-candidate"
+difficulty_percent = 66
+dx_surfaces = ["icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "microsoft.word.add-ins"
+name = "Word Office Add-ins"
+vendor = "Microsoft"
+host_family = "office"
+official_docs = "https://learn.microsoft.com/en-us/office/dev/add-ins/word/word-add-ins-programming-overview"
+extension_surface = "Office Add-in manifest task pane commands dialog and Word JavaScript APIs"
+adapter_strategy = "use a document-safe DX task pane for assets snippets and receipts through a reviewed Office local-service boundary with no direct shell or document mutation"
+first_proof = "sideload a Word Office task pane with document-safe metadata-only receipts"
+recommended_priority = "starter-candidate"
+difficulty_percent = 66
+dx_surfaces = ["commands", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "microsoft.teams.apps"
+name = "Microsoft Teams Apps"
+vendor = "Microsoft"
+host_family = "collaboration"
+official_docs = "https://learn.microsoft.com/en-us/microsoftteams/platform/overview"
+extension_surface = "Teams app manifest tabs bots message extensions agents and Developer Portal distribution"
+adapter_strategy = "start with a DX status and asset command tab backed by service auth rather than local process access"
+first_proof = "sideload a development Teams app package and capture signed-in workspace receipt metadata"
+recommended_priority = "research"
+difficulty_percent = 72
+dx_surfaces = ["commands", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "google.workspace-addons"
+name = "Google Workspace Add-ons"
+vendor = "Google"
+host_family = "office"
+official_docs = "https://developers.google.com/workspace/add-ons/overview"
+extension_surface = "Workspace Add-ons card UI contextual triggers Apps Script homepage triggers and Marketplace review"
+adapter_strategy = "maintain a source-level Apps Script add-on scaffold with typed card actions, no OAuth scopes, and an OAuth-reviewed cloud-service bridge while avoiding local process claims"
+first_proof = "run the development add-on against a test Google Workspace file and capture metadata-only scope and card-action receipts"
+recommended_priority = "active-scaffold"
+difficulty_percent = 70
+dx_surfaces = ["commands", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "slack.apps"
+name = "Slack Apps"
+vendor = "Salesforce"
+host_family = "collaboration"
+official_docs = "https://docs.slack.dev/"
+extension_surface = "Slack apps commands shortcuts modals workflow steps events and OAuth scopes"
+adapter_strategy = "build a workspace-scoped DX command bot with least-privilege scopes and service-side receipts"
+first_proof = "install a development Slack app in a test workspace and capture slash-command receipt metadata"
+recommended_priority = "research"
+difficulty_percent = 65
+dx_surfaces = ["commands", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "jetbrains.intellij-platform"
+name = "IntelliJ Platform Plugins"
+vendor = "JetBrains"
+host_family = "editor"
+official_docs = "https://plugins.jetbrains.com/docs/intellij/welcome.html"
+extension_surface = "IntelliJ Platform plugin actions tool windows project services and Marketplace distribution"
+adapter_strategy = "maintain a source-level Kotlin plugin scaffold with action, tool-window, and project-service registrations that map to typed metadata-only DX command plans while inspections, IDE mutation, local-service proof, Plugin Verifier, signing, and Marketplace proof remain deferred"
+first_proof = "run the plugin in a sandbox IDE and capture metadata-only action and tool-window receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 78
+dx_surfaces = ["commands", "forge", "icons", "fonts", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "visual-studio.sdk"
+name = "Visual Studio SDK Extensions"
+vendor = "Microsoft"
+host_family = "editor"
+official_docs = "https://learn.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2022"
+extension_surface = "Visual Studio SDK VSIX commands VSCT menus async packages and Marketplace distribution"
+adapter_strategy = "maintain a source-level VSIX command scaffold with typed metadata-only command plans and a future local-service boundary while process execution, solution mutation, package proof, signing, and Marketplace proof remain deferred"
+first_proof = "run an Experimental Instance with the development VSIX and capture metadata-only command receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 78
+dx_surfaces = ["commands", "forge", "icons", "fonts", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "blender.python-addons"
+name = "Blender Python Add-ons"
+vendor = "Blender Foundation"
+host_family = "creative-3d"
+official_docs = "https://docs.blender.org/api/current/index.html"
+extension_surface = "Python add-ons operators panels preferences asset browser and script execution"
+adapter_strategy = "use a Python add-on for DX asset import and command receipts with explicit file and network controls"
+first_proof = "install a local add-on in Blender and capture operator receipt metadata"
+recommended_priority = "starter-candidate"
+difficulty_percent = 55
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "unity.editor-extensions"
+name = "Unity Editor Extensions"
+vendor = "Unity"
+host_family = "game-engine"
+official_docs = "https://docs.unity3d.com/Manual/ExtendingTheEditor.html"
+extension_surface = "C# Editor scripts EditorWindow menu items Unity packages asmdefs and Asset Store distribution"
+adapter_strategy = "maintain a source-level Editor-only package scaffold with typed metadata-only command plans and a future local-service boundary while runtime assemblies, asset import, project mutation, package proof, signing, and Asset Store proof remain deferred"
+first_proof = "open a test Unity project with the local package and capture metadata-only editor-window command receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 68
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "unreal-engine.plugins"
+name = "Unreal Engine Plugins"
+vendor = "Epic Games"
+host_family = "game-engine"
+official_docs = "https://dev.epicgames.com/documentation/en-us/unreal-engine/plugins-in-unreal-engine"
+extension_surface = "Unreal plugin descriptors editor modules tool menus content plugin boundaries and Fab or Marketplace distribution"
+adapter_strategy = "maintain a source-level editor-only C++ plugin scaffold with typed metadata-only command plans while runtime modules, content plugins, Python bridges, process execution, asset import, package proof, signing, and Marketplace proof remain deferred"
+first_proof = "load the development plugin in a sample Unreal project and capture metadata-only editor-module receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 76
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "autodesk.revit-api"
+name = "Autodesk Revit API Add-ins"
+vendor = "Autodesk"
+host_family = "cad-bim"
+official_docs = "https://help.autodesk.com/view/RVT/2024/ENU/?guid=Revit_API_Revit_API_Developers_Guide_html"
+extension_surface = "Revit API external commands external applications add-in manifests and .NET assemblies"
+adapter_strategy = "treat Revit as a high-trust native SDK target with project-safe DX asset and documentation commands only"
+first_proof = "load a signed development add-in in a sample Revit project and capture metadata-only command receipt"
+recommended_priority = "hard-native-sdk"
+difficulty_percent = 84
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "autodesk.autocad-api"
+name = "Autodesk AutoCAD API Add-ons"
+vendor = "Autodesk"
+host_family = "cad-bim"
+official_docs = "https://aps.autodesk.com/developer/overview/autocad"
+extension_surface = "AutoCAD .NET ObjectARX AutoLISP JavaScript APIs add-ons and ADN distribution"
+adapter_strategy = "start with a minimal .NET command adapter and defer any drawing mutation until command receipts and undo boundaries are proven"
+first_proof = "load a development add-on in a sample AutoCAD drawing and capture command receipt metadata"
+recommended_priority = "hard-native-sdk"
+difficulty_percent = 82
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "rhino.rhinocommon"
+name = "RhinoCommon Plugins"
+vendor = "McNeel"
+host_family = "cad-3d"
+official_docs = "https://developer.rhino3d.com/guides/rhinocommon/"
+extension_surface = "RhinoCommon .NET plugins commands panels and Grasshopper integration"
+adapter_strategy = "create a Rhino command adapter for DX assets and geometry-safe metadata workflows before deeper model mutation"
+first_proof = "load a development Rhino plugin and capture command receipt metadata in a sample model"
+recommended_priority = "research"
+difficulty_percent = 70
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "adobe.photoshop.uxp"
+name = "Adobe Photoshop UXP Plugins"
+vendor = "Adobe"
+host_family = "creative-adobe"
+official_docs = "https://developer.adobe.com/photoshop/uxp/"
+extension_surface = "Photoshop UXP Manifest v5 plugins panels commands document APIs and Creative Cloud CCX distribution"
+adapter_strategy = "maintain a source-level UXP panel and command scaffold that renders metadata-only DX status asset and receipt plans through a future local-service boundary while process launch document mutation broad filesystem access and network access remain deferred"
+first_proof = "load the development UXP plugin in Photoshop with UXP Developer Tool and capture metadata-only panel and command availability receipts"
+recommended_priority = "active-scaffold"
+difficulty_percent = 78
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "adobe.premiere-pro.uxp"
+name = "Adobe Premiere Pro UXP Plugins"
+vendor = "Adobe"
+host_family = "creative-adobe"
+official_docs = "https://developer.adobe.com/premiere-pro/uxp/"
+extension_surface = "Premiere Pro UXP plugins, panels, command entrypoints, project/media metadata surfaces, and Premiere API integration points"
+adapter_strategy = "maintain a source-level Premiere Pro UXP panel and command scaffold that renders metadata-only DX status, media search, project-safe metadata, and receipt plans through a future local-service boundary while timeline or sequence mutation, export automation, native SDK code, hybrid plugin bridges, process launch, broad filesystem access, and network access remain deferred"
+first_proof = "load the development UXP plugin in Premiere Pro and capture metadata-only panel, command, and project-safe receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 86
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "adobe.indesign.uxp"
+name = "Adobe InDesign UXP Plugins"
+vendor = "Adobe"
+host_family = "creative-adobe"
+official_docs = "https://developer.adobe.com/indesign/uxp/plugins/"
+extension_surface = "InDesign UXP plugins, panels, command entrypoints, packaged CCX distribution, and document, page, typography, and layout metadata surfaces"
+adapter_strategy = "maintain a source-level InDesign UXP panel and command scaffold that renders metadata-only DX status, typography and asset search, document-safe metadata, and receipt plans through a future local-service boundary while document mutation, package proof, Creative Cloud review, native SDK code, hybrid plugin bridges, process launch, broad filesystem access, and network access remain deferred"
+first_proof = "load the development UXP plugin in InDesign and capture metadata-only panel, command, and document-safe receipt metadata"
+recommended_priority = "active-scaffold"
+difficulty_percent = 80
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "adobe.acrobat.sdk"
+name = "Adobe Acrobat SDK Plug-ins"
+vendor = "Adobe"
+host_family = "document"
+official_docs = "https://opensource.adobe.com/dc-acrobat-sdk-docs/library/overview/index.html"
+extension_surface = "Acrobat SDK C or C++ plug-ins JavaScript extensions PDF Library APIs and enterprise distribution"
+adapter_strategy = "treat Acrobat as a native SDK target and defer PDF mutation until signing sandbox and document safety are proven"
+first_proof = "load a development plug-in in a test Acrobat profile and capture metadata-only command receipt"
+recommended_priority = "hard-native-sdk"
+difficulty_percent = 88
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]
+
+[[targets]]
+id = "blackmagic.davinci-resolve.scripting"
+name = "DaVinci Resolve Scripting"
+vendor = "Blackmagic Design"
+host_family = "media"
+official_docs = "https://www.blackmagicdesign.com/products/davinciresolve/fusion"
+extension_surface = "DaVinci Resolve scripting through bundled Developer/Scripting documentation plus Python and Lua scripts loaded by Resolve or Fusion"
+adapter_strategy = "maintain a source-level scripting command-center scaffold with metadata-only command plans for DX status, read-only project inspection, and receipts through a future local service; keep external scripting, local-network access, render automation, timeline and media-pool mutation, process spawning, and arbitrary file or network access deferred"
+first_proof = "load the development script in DaVinci Resolve against a sample project and capture metadata-only command availability plus read-only project-inspection receipts"
+recommended_priority = "active-scaffold"
+difficulty_percent = 86
+dx_surfaces = ["commands", "media", "assets", "local-service", "receipts"]
+release_gates = ["official docs evidence", "permission and external-scripting access review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt", "local-service proof receipt"]
+
+[[targets]]
+id = "blackmagic.fusion.scripting"
+name = "Blackmagic Fusion Scripting"
+vendor = "Blackmagic Design"
+host_family = "media"
+official_docs = "https://documents.blackmagicdesign.com/UserManuals/Fusion8_Scripting_Guide.pdf"
+extension_surface = "Fusion Lua and Python scripting tools macros and compositing automation"
+adapter_strategy = "start with read-only composition metadata and media asset insertion proofs before render automation"
+first_proof = "run a local Fusion script against a sample composition and capture metadata-only receipt"
+recommended_priority = "research"
+difficulty_percent = 80
+dx_surfaces = ["commands", "icons", "fonts", "media", "assets", "receipts"]
+release_gates = ["official docs evidence", "permission model review", "guarded j1 verification", "package signing and checksum receipt", "loaded-host smoke receipt"]

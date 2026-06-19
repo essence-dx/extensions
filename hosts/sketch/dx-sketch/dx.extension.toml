@@ -1,0 +1,116 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.sketch.command-center"
+name = "DX Sketch Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Sketch command center for DX status, asset search, and receipt paths."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["sketch"]
+platforms = ["macos"]
+architectures = ["x86_64", "aarch64"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.document}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "sketch-plugin-command"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "sketch.plugin.command"
+required = true
+scope = ["plugin-menu"]
+reason = "Expose Sketch menu commands for explicit user-invoked DX actions."
+
+[[capabilities]]
+id = "sketch.document.read"
+required = true
+scope = ["document-metadata"]
+reason = "Read document-safe Sketch metadata when the host context is available."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for asset and status requests when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt location from the Sketch host surface."
+
+[[host_actions]]
+id = "dx.sketch.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Request DX status through the configured Sketch service bridge."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "sketch-message"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["sketch.plugin.command", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.sketch.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Request DX icon, font, and media asset search through the configured Sketch service bridge."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "sketch-command"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["sketch.plugin.command", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.sketch.show_receipts"
+group = "receipts"
+label = "Show DX Receipts Path"
+description = "Show the local DX receipt folder path from Sketch."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "sketch-message"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["sketch.plugin.command", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.sketch.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true

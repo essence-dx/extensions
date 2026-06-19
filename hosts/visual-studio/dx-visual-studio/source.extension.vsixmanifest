@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="dev.dx.visual-studio.command-center" Version="0.1.0" Language="en-US" Publisher="DX" />
+    <DisplayName>DX Visual Studio Command Center</DisplayName>
+    <Description xml:space="preserve">DX command center for Visual Studio.</Description>
+    <Tags>DX;Command Center;Assets;Receipts</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,18.0)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[17.0,18.0)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[17.0,18.0)" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.VisualStudio.MPF.17.0" DisplayName="Visual Studio MPF" Version="[17.0,18.0)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="Dx.VisualStudio.CommandCenter.dll" />
+  </Assets>
+</PackageManifest>

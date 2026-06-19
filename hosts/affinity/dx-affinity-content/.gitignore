@@ -1,0 +1,10 @@
+/dist/
+/build/
+/receipts/
+*.afassets
+*.afbrushes
+*.affont
+*.afpalette
+*.afstyles
+*.aftemplate
+*.zip

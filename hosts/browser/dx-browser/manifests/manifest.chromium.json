@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "DX Browser Command Center",
+  "version": "0.1.0",
+  "description": "Official browser command-center bridge for DX tools and receipts.",
+  "icons": {
+    "16": "static/dx.svg",
+    "48": "static/dx.svg",
+    "128": "static/dx.svg"
+  },
+  "action": {
+    "default_icon": {
+      "16": "static/dx.svg",
+      "48": "static/dx.svg",
+      "128": "static/dx.svg"
+    },
+    "default_title": "DX",
+    "default_popup": "static/popup.html"
+  },
+  "background": {
+    "service_worker": "js/background/chromium.js",
+    "type": "module"
+  },
+  "host_permissions": [],
+  "options_page": "static/options.html",
+  "permissions": ["activeTab", "nativeMessaging", "sidePanel"],
+  "side_panel": {
+    "default_path": "static/sidepanel.html"
+  }
+}

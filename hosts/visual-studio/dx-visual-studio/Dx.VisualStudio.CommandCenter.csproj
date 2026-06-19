@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Dx.VisualStudio.CommandCenter</RootNamespace>
+    <AssemblyName>Dx.VisualStudio.CommandCenter</AssemblyName>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <VSSDKTargetPlatformRegRootSuffix>Exp</VSSDKTargetPlatformRegRootSuffix>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.10.2068" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.10.2183" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="Resources\DxCommandCenter.vsct" />
+  </ItemGroup>
+</Project>

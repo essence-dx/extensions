@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="TaskPaneApp">
+  <Id>c9f0b40e-8ec3-4b4f-bce0-b7e406fef6b1</Id>
+  <Version>0.1.0.0</Version>
+  <ProviderName>DX</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="DX Command Center"/>
+  <Description DefaultValue="Run approved DX presentation-safe actions from PowerPoint."/>
+  <IconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://dx-office.example.invalid/support"/>
+  <AppDomains>
+    <AppDomain>https://dx-office.example.invalid</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Presentation"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="PowerPointApi" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://dx-office.example.invalid/powerpoint/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadDocument</Permissions>
+  <VersionOverrides
+    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Presentation">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="DxPowerPointGetStartedTitle"/>
+            <Description resid="DxPowerPointGetStartedDescription"/>
+            <LearnMoreUrl resid="DxPowerPointSupportUrl"/>
+          </GetStarted>
+          <FunctionFile resid="DxPowerPointTaskpaneUrl"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="DxPowerPointCommandCenterGroup">
+                <Label resid="DxPowerPointGroupLabel"/>
+                <Icon>
+                  <bt:Image size="16" resid="DxPowerPointIcon16"/>
+                  <bt:Image size="32" resid="DxPowerPointIcon32"/>
+                  <bt:Image size="80" resid="DxPowerPointIcon80"/>
+                </Icon>
+                <Control xsi:type="Button" id="DxPowerPointCommandCenterButton">
+                  <Label resid="DxPowerPointButtonLabel"/>
+                  <Supertip>
+                    <Title resid="DxPowerPointButtonLabel"/>
+                    <Description resid="DxPowerPointButtonDescription"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="DxPowerPointIcon16"/>
+                    <bt:Image size="32" resid="DxPowerPointIcon32"/>
+                    <bt:Image size="80" resid="DxPowerPointIcon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DxPowerPointCommandCenterTaskpane</TaskpaneId>
+                    <SourceLocation resid="DxPowerPointTaskpaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="DxPowerPointIcon16" DefaultValue="https://dx-office.example.invalid/assets/icon-16.png"/>
+        <bt:Image id="DxPowerPointIcon32" DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+        <bt:Image id="DxPowerPointIcon80" DefaultValue="https://dx-office.example.invalid/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="DxPowerPointTaskpaneUrl" DefaultValue="https://dx-office.example.invalid/powerpoint/taskpane.html"/>
+        <bt:Url id="DxPowerPointSupportUrl" DefaultValue="https://dx-office.example.invalid/support"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="DxPowerPointGroupLabel" DefaultValue="DX"/>
+        <bt:String id="DxPowerPointButtonLabel" DefaultValue="DX Command Center"/>
+        <bt:String id="DxPowerPointGetStartedTitle" DefaultValue="DX Command Center"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="DxPowerPointButtonDescription" DefaultValue="Open DX presentation-safe actions."/>
+        <bt:String id="DxPowerPointGetStartedDescription" DefaultValue="Open the DX task pane from the Home ribbon."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

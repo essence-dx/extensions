@@ -1,0 +1,191 @@
+schema = "dx.release_evidence_gates"
+manifest_version = 1
+
+[[extensions]]
+id = "dx.vscode.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "marketplace_review"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.vscode.command-center/vscode-loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.vscode.command-center/package-output-latest.json", "signing=.dx/receipts/extensions/dx.vscode.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.vscode.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.vscode.command-center/marketplace-review-latest.json", "marketplace_review=.dx/receipts/extensions/dx.vscode.command-center/marketplace-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.vscode.command-center/vscode-loaded-host-latest.json", ".dx/receipts/extensions/dx.vscode.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.vscode.command-center/signing-latest.json", ".dx/receipts/extensions/dx.vscode.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.vscode.command-center/marketplace-review-latest.json"]
+next_release_proof = "Capture loaded VS Code Extension Development Host command receipts and VSIX signing/checksum/distribution evidence."
+blocked_by = ["loaded VS Code host receipt", "VSIX signing receipt", "release checksum receipt", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.browser.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "native_host_package"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.browser.command-center/chrome-loaded-profile-latest.json", "host_execution=.dx/receipts/extensions/dx.browser.command-center/edge-loaded-profile-latest.json", "host_execution=.dx/receipts/extensions/dx.browser.command-center/firefox-loaded-profile-latest.json", "package_output=.dx/receipts/extensions/dx.browser.command-center/package-output-latest.json", "native_host_package=.dx/receipts/extensions/dx.browser.command-center/native-host-release-package-latest.json", "signing=.dx/receipts/extensions/dx.browser.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.browser.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.browser.command-center/store-distribution-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.browser.command-center/chrome-loaded-profile-latest.json", ".dx/receipts/extensions/dx.browser.command-center/edge-loaded-profile-latest.json", ".dx/receipts/extensions/dx.browser.command-center/firefox-loaded-profile-latest.json", ".dx/receipts/extensions/dx.browser.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.browser.command-center/native-host-release-package-latest.json", ".dx/receipts/extensions/dx.browser.command-center/signing-latest.json", ".dx/receipts/extensions/dx.browser.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.browser.command-center/store-distribution-latest.json"]
+next_release_proof = "Capture real loaded Chrome, Edge, and Firefox profile receipts against the installed native host."
+blocked_by = ["loaded Chrome receipt", "loaded Edge receipt", "loaded Firefox receipt", "native-host release package proof", "store distribution proof"]
+
+[[extensions]]
+id = "dx.blender.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "addon_install"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.blender.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.blender.command-center/package-output-latest.json", "addon_install=.dx/receipts/extensions/dx.blender.command-center/addon-install-latest.json", "signing=.dx/receipts/extensions/dx.blender.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.blender.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.blender.command-center/distribution-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.blender.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.blender.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.blender.command-center/addon-install-latest.json", ".dx/receipts/extensions/dx.blender.command-center/signing-latest.json", ".dx/receipts/extensions/dx.blender.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.blender.command-center/distribution-latest.json"]
+next_release_proof = "Load the add-on in Blender and capture operator/install receipts."
+blocked_by = ["loaded Blender add-on receipt", "add-on install proof", "signing receipt", "distribution proof"]
+
+[[extensions]]
+id = "dx.obsidian.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "community_review"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.obsidian.command-center/loaded-vault-latest.json", "package_output=.dx/receipts/extensions/dx.obsidian.command-center/package-output-latest.json", "signing=.dx/receipts/extensions/dx.obsidian.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.obsidian.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.obsidian.command-center/community-review-latest.json", "community_review=.dx/receipts/extensions/dx.obsidian.command-center/community-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.obsidian.command-center/loaded-vault-latest.json", ".dx/receipts/extensions/dx.obsidian.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.obsidian.command-center/signing-latest.json", ".dx/receipts/extensions/dx.obsidian.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.obsidian.command-center/community-review-latest.json"]
+next_release_proof = "Load the plugin in an isolated Obsidian vault and capture command palette receipts."
+blocked_by = ["loaded vault receipt", "release asset proof", "community plugin review proof"]
+
+[[extensions]]
+id = "dx.figma.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "community_review", "plugin_id", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.figma.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.figma.command-center/package-output-latest.json", "plugin_id=.dx/receipts/extensions/dx.figma.command-center/plugin-id-latest.json", "local_service=.dx/receipts/extensions/dx.figma.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.figma.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.figma.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.figma.command-center/community-review-latest.json", "community_review=.dx/receipts/extensions/dx.figma.command-center/community-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.figma.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.figma.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.figma.command-center/plugin-id-latest.json", ".dx/receipts/extensions/dx.figma.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.figma.command-center/signing-latest.json", ".dx/receipts/extensions/dx.figma.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.figma.command-center/community-review-latest.json"]
+next_release_proof = "Run a loaded Figma desktop plugin smoke and capture plugin ID, command, signing, and Community review receipts."
+blocked_by = ["loaded Figma receipt", "plugin ID proof", "Community review proof"]
+
+[[extensions]]
+id = "dx.canva.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "canva_review", "local_service", "cloud_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.canva.command-center/development-app-latest.json", "cloud_service=.dx/receipts/extensions/dx.canva.command-center/cloud-service-latest.json", "package_output=.dx/receipts/extensions/dx.canva.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.canva.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.canva.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.canva.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.canva.command-center/canva-review-latest.json", "canva_review=.dx/receipts/extensions/dx.canva.command-center/canva-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.canva.command-center/development-app-latest.json", ".dx/receipts/extensions/dx.canva.command-center/cloud-service-latest.json", ".dx/receipts/extensions/dx.canva.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.canva.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.canva.command-center/signing-latest.json", ".dx/receipts/extensions/dx.canva.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.canva.command-center/canva-review-latest.json"]
+next_release_proof = "Run a development Canva app smoke and capture review-ready signing/checksum evidence."
+blocked_by = ["development Canva app receipt", "Canva review proof", "signing receipt"]
+
+[[extensions]]
+id = "dx.sketch.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "notarization", "sketchtool_run", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.sketch.command-center/loaded-host-latest.json", "sketchtool_run=.dx/receipts/extensions/dx.sketch.command-center/sketchtool-latest.json", "package_output=.dx/receipts/extensions/dx.sketch.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.sketch.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.sketch.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.sketch.command-center/checksum-latest.json", "notarization=.dx/receipts/extensions/dx.sketch.command-center/notarization-latest.json", "distribution_review=.dx/receipts/extensions/dx.sketch.command-center/distribution-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.sketch.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/sketchtool-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/signing-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/notarization-latest.json", ".dx/receipts/extensions/dx.sketch.command-center/distribution-latest.json"]
+next_release_proof = "Load the Sketch plugin or run sketchtool, then capture notarization and distribution receipts."
+blocked_by = ["loaded Sketch receipt", "sketchtool proof", "notarization proof", "Plugin Directory review proof"]
+
+[[extensions]]
+id = "dx.excel.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "appsource_review", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.excel.command-center/sideloaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.excel.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.excel.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.excel.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.excel.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.excel.command-center/appsource-review-latest.json", "appsource_review=.dx/receipts/extensions/dx.excel.command-center/appsource-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.excel.command-center/sideloaded-host-latest.json", ".dx/receipts/extensions/dx.excel.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.excel.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.excel.command-center/signing-latest.json", ".dx/receipts/extensions/dx.excel.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.excel.command-center/appsource-review-latest.json"]
+next_release_proof = "Sideload the Excel add-in and capture signing, checksum, and AppSource readiness receipts."
+blocked_by = ["sideloaded Excel receipt", "signing receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.powerpoint.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "appsource_review", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.powerpoint.command-center/sideloaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.powerpoint.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.powerpoint.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.powerpoint.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.powerpoint.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.powerpoint.command-center/appsource-review-latest.json", "appsource_review=.dx/receipts/extensions/dx.powerpoint.command-center/appsource-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.powerpoint.command-center/sideloaded-host-latest.json", ".dx/receipts/extensions/dx.powerpoint.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.powerpoint.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.powerpoint.command-center/signing-latest.json", ".dx/receipts/extensions/dx.powerpoint.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.powerpoint.command-center/appsource-review-latest.json"]
+next_release_proof = "Sideload the PowerPoint add-in and capture signing, checksum, and AppSource readiness receipts."
+blocked_by = ["sideloaded PowerPoint receipt", "signing receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.word.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "appsource_review", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.word.command-center/sideloaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.word.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.word.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.word.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.word.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.word.command-center/appsource-review-latest.json", "appsource_review=.dx/receipts/extensions/dx.word.command-center/appsource-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.word.command-center/sideloaded-host-latest.json", ".dx/receipts/extensions/dx.word.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.word.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.word.command-center/signing-latest.json", ".dx/receipts/extensions/dx.word.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.word.command-center/appsource-review-latest.json"]
+next_release_proof = "Sideload the Word add-in and capture signing, checksum, and AppSource readiness receipts."
+blocked_by = ["sideloaded Word receipt", "signing receipt", "AppSource readiness proof"]
+
+[[extensions]]
+id = "dx.zed.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "gallery_review", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.zed.command-center/loaded-dev-extension-latest.json", "package_output=.dx/receipts/extensions/dx.zed.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.zed.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.zed.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.zed.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.zed.command-center/gallery-review-latest.json", "gallery_review=.dx/receipts/extensions/dx.zed.command-center/gallery-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.zed.command-center/loaded-dev-extension-latest.json", ".dx/receipts/extensions/dx.zed.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.zed.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.zed.command-center/signing-latest.json", ".dx/receipts/extensions/dx.zed.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.zed.command-center/gallery-review-latest.json"]
+next_release_proof = "Load the Zed dev extension and capture installed source, extension index, host log, executable hash, and package-matched WebAssembly evidence."
+blocked_by = ["loaded Zed dev-extension receipt", "gallery package proof", "signing receipt"]
+
+[[extensions]]
+id = "dx.photoshop.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "ccx_package", "plugin_id", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.photoshop.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.photoshop.command-center/package-output-latest.json", "ccx_package=.dx/receipts/extensions/dx.photoshop.command-center/ccx-package-latest.json", "plugin_id=.dx/receipts/extensions/dx.photoshop.command-center/plugin-id-latest.json", "local_service=.dx/receipts/extensions/dx.photoshop.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.photoshop.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.photoshop.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.photoshop.command-center/creative-cloud-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.photoshop.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/ccx-package-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/plugin-id-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/signing-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.photoshop.command-center/creative-cloud-review-latest.json"]
+next_release_proof = "Capture Adobe Developer Console plugin ID, load the Photoshop UXP panel through UXP Developer Tool, and capture CCX/signing/review receipts."
+blocked_by = ["loaded Photoshop UXP receipt", "Adobe Developer Console plugin ID proof", "CCX package proof", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.premiere-pro.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "ccx_package", "plugin_id", "native_or_hybrid_plugin", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.premiere-pro.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.premiere-pro.command-center/package-output-latest.json", "ccx_package=.dx/receipts/extensions/dx.premiere-pro.command-center/ccx-package-latest.json", "plugin_id=.dx/receipts/extensions/dx.premiere-pro.command-center/plugin-id-latest.json", "native_or_hybrid_plugin=.dx/receipts/extensions/dx.premiere-pro.command-center/native-plugin-latest.json", "local_service=.dx/receipts/extensions/dx.premiere-pro.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.premiere-pro.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.premiere-pro.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.premiere-pro.command-center/creative-cloud-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.premiere-pro.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/ccx-package-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/plugin-id-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/native-plugin-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/signing-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.premiere-pro.command-center/creative-cloud-review-latest.json"]
+next_release_proof = "Capture Adobe Developer Console plugin ID, load the Premiere Pro UXP panel, and capture project-safe runtime, CCX, native or hybrid plugin, and review receipts."
+blocked_by = ["loaded Premiere Pro UXP receipt", "Adobe Developer Console plugin ID proof", "native or hybrid plugin proof", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.indesign.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "ccx_package", "plugin_id", "native_or_hybrid_plugin", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.indesign.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.indesign.command-center/package-output-latest.json", "ccx_package=.dx/receipts/extensions/dx.indesign.command-center/ccx-package-latest.json", "plugin_id=.dx/receipts/extensions/dx.indesign.command-center/plugin-id-latest.json", "native_or_hybrid_plugin=.dx/receipts/extensions/dx.indesign.command-center/native-plugin-latest.json", "local_service=.dx/receipts/extensions/dx.indesign.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.indesign.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.indesign.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.indesign.command-center/creative-cloud-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.indesign.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/ccx-package-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/plugin-id-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/native-plugin-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/signing-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.indesign.command-center/creative-cloud-review-latest.json"]
+next_release_proof = "Capture Adobe Developer Console plugin ID, load the InDesign UXP panel, and capture document-safe runtime, CCX, native or hybrid plugin, and review receipts."
+blocked_by = ["loaded InDesign UXP receipt", "Adobe Developer Console plugin ID proof", "native or hybrid plugin proof", "Creative Cloud review proof"]
+
+[[extensions]]
+id = "dx.davinci-resolve.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "workflow_integration", "developer_docs"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.davinci-resolve.command-center/loaded-host-latest.json", "package_output=.dx/receipts/extensions/dx.davinci-resolve.command-center/package-output-latest.json", "workflow_integration=.dx/receipts/extensions/dx.davinci-resolve.command-center/workflow-integration-latest.json", "developer_docs=.dx/receipts/extensions/dx.davinci-resolve.command-center/developer-docs-latest.json", "signing=.dx/receipts/extensions/dx.davinci-resolve.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.davinci-resolve.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.davinci-resolve.command-center/distribution-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.davinci-resolve.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/workflow-integration-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/developer-docs-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/signing-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.davinci-resolve.command-center/distribution-latest.json"]
+next_release_proof = "Capture installed DaVinci Resolve Developer documentation version, then run read-only workflow integration inside Resolve."
+blocked_by = ["loaded DaVinci Resolve receipt", "Developer documentation version capture", "Workflow Integration proof", "distribution proof"]
+
+[[extensions]]
+id = "dx.intellij-platform.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "plugin_verifier", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.intellij-platform.command-center/sandbox-ide-latest.json", "package_output=.dx/receipts/extensions/dx.intellij-platform.command-center/package-output-latest.json", "plugin_verifier=.dx/receipts/extensions/dx.intellij-platform.command-center/plugin-verifier-latest.json", "local_service=.dx/receipts/extensions/dx.intellij-platform.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.intellij-platform.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.intellij-platform.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.intellij-platform.command-center/marketplace-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.intellij-platform.command-center/sandbox-ide-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/plugin-verifier-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/signing-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.intellij-platform.command-center/marketplace-review-latest.json"]
+next_release_proof = "Run an IntelliJ sandbox IDE smoke and Plugin Verifier, then capture signing/checksum/Marketplace receipts."
+blocked_by = ["sandbox IDE receipt", "Plugin Verifier receipt", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.visual-studio.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "experimental_instance", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.visual-studio.command-center/experimental-instance-latest.json", "experimental_instance=.dx/receipts/extensions/dx.visual-studio.command-center/experimental-instance-latest.json", "package_output=.dx/receipts/extensions/dx.visual-studio.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.visual-studio.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.visual-studio.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.visual-studio.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.visual-studio.command-center/marketplace-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.visual-studio.command-center/experimental-instance-latest.json", ".dx/receipts/extensions/dx.visual-studio.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.visual-studio.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.visual-studio.command-center/signing-latest.json", ".dx/receipts/extensions/dx.visual-studio.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.visual-studio.command-center/marketplace-review-latest.json"]
+next_release_proof = "Run a Visual Studio Experimental Instance smoke and capture VSIX signing/checksum/Marketplace receipts."
+blocked_by = ["Experimental Instance receipt", "VSSDK availability", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.unity-editor.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "project_import", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.unity-editor.command-center/loaded-host-latest.json", "project_import=.dx/receipts/extensions/dx.unity-editor.command-center/project-import-latest.json", "package_output=.dx/receipts/extensions/dx.unity-editor.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.unity-editor.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.unity-editor.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.unity-editor.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.unity-editor.command-center/asset-store-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.unity-editor.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/project-import-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/signing-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.unity-editor.command-center/asset-store-review-latest.json"]
+next_release_proof = "Load the package in a Unity test project and capture project import, signing, and Asset Store receipts."
+blocked_by = ["loaded Unity Editor receipt", "project import proof", "Asset Store review proof"]
+
+[[extensions]]
+id = "dx.unreal-engine.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "project_enablement", "local_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.unreal-engine.command-center/loaded-host-latest.json", "project_enablement=.dx/receipts/extensions/dx.unreal-engine.command-center/project-enablement-latest.json", "package_output=.dx/receipts/extensions/dx.unreal-engine.command-center/package-output-latest.json", "local_service=.dx/receipts/extensions/dx.unreal-engine.command-center/local-service-latest.json", "signing=.dx/receipts/extensions/dx.unreal-engine.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.unreal-engine.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.unreal-engine.command-center/marketplace-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.unreal-engine.command-center/loaded-host-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/project-enablement-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/local-service-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/signing-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.unreal-engine.command-center/marketplace-review-latest.json"]
+next_release_proof = "Load the plugin in an Unreal sample project and capture project enablement, signing, and marketplace receipts."
+blocked_by = ["loaded Unreal sample-project receipt", "project enablement proof", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.google-workspace.command-center"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "apps_script_deployment", "oauth_review", "cloud_service"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.google-workspace.command-center/workspace-file-smoke-latest.json", "cloud_service=.dx/receipts/extensions/dx.google-workspace.command-center/cloud-service-latest.json", "apps_script_deployment=.dx/receipts/extensions/dx.google-workspace.command-center/apps-script-deployment-latest.json", "package_output=.dx/receipts/extensions/dx.google-workspace.command-center/package-output-latest.json", "oauth_review=.dx/receipts/extensions/dx.google-workspace.command-center/oauth-review-latest.json", "signing=.dx/receipts/extensions/dx.google-workspace.command-center/signing-latest.json", "checksum=.dx/receipts/extensions/dx.google-workspace.command-center/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.google-workspace.command-center/marketplace-review-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.google-workspace.command-center/workspace-file-smoke-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/cloud-service-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/apps-script-deployment-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/package-output-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/oauth-review-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/signing-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/checksum-latest.json", ".dx/receipts/extensions/dx.google-workspace.command-center/marketplace-review-latest.json"]
+next_release_proof = "Deploy the Apps Script add-on to a test Workspace file and capture OAuth, signing, checksum, and Marketplace receipts."
+blocked_by = ["test Workspace file receipt", "Apps Script deployment proof", "OAuth review proof", "Marketplace review proof"]
+
+[[extensions]]
+id = "dx.affinity-content.bridge"
+stage = "not-release-ready"
+required_evidence = ["host_execution", "package_output", "signing", "checksum", "distribution_review", "manual_import", "content_package", "photoshop_filter_plugin"]
+evidence_receipt_requirements = ["host_execution=.dx/receipts/extensions/dx.affinity-content.bridge/loaded-app-latest.json", "manual_import=.dx/receipts/extensions/dx.affinity-content.bridge/manual-import-latest.json", "photoshop_filter_plugin=.dx/receipts/extensions/dx.affinity-content.bridge/photoshop-filter-plugin-latest.json", "package_output=.dx/receipts/extensions/dx.affinity-content.bridge/content-package-latest.json", "content_package=.dx/receipts/extensions/dx.affinity-content.bridge/content-package-latest.json", "signing=.dx/receipts/extensions/dx.affinity-content.bridge/signing-latest.json", "checksum=.dx/receipts/extensions/dx.affinity-content.bridge/checksum-latest.json", "distribution_review=.dx/receipts/extensions/dx.affinity-content.bridge/distribution-latest.json"]
+evidence_receipts = [".dx/receipts/extensions/dx.affinity-content.bridge/loaded-app-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/manual-import-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/photoshop-filter-plugin-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/content-package-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/signing-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/checksum-latest.json", ".dx/receipts/extensions/dx.affinity-content.bridge/distribution-latest.json"]
+next_release_proof = "Create a real importable Affinity content package, then capture loaded-app, manual import, Photoshop-compatible filter plugin, checksum, signing, and distribution receipts."
+blocked_by = ["loaded Affinity app smoke", "manual Affinity import receipt", "Photoshop-compatible filter plugin proof", "real content package proof", "Affinity distribution proof"]

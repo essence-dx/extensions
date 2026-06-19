@@ -1,0 +1,35 @@
+{
+  "name": "DX Affinity Content Bridge",
+  "supportedHosts": [
+    "Affinity Photo 2",
+    "Affinity Designer 2",
+    "Affinity Publisher 2"
+  ],
+  "supportedContentTypes": [
+    {
+      "type": "assets",
+      "extensions": [".afassets"]
+    },
+    {
+      "type": "fonts",
+      "extensions": [".affont", ".otf", ".ttf"]
+    },
+    {
+      "type": "swatches",
+      "extensions": [".afpalette", ".ase"]
+    },
+    {
+      "type": "styles",
+      "extensions": [".afstyles"]
+    },
+    {
+      "type": "templates",
+      "extensions": [".aftemplate"]
+    }
+  ],
+  "photoshopFilterCompatibility": {
+    "host": "Affinity Photo 2",
+    "compatiblePluginType": "64-bit Photoshop-compatible filter plugins",
+    "dxNativeFilterPlugin": "deferred"
+  }
+}

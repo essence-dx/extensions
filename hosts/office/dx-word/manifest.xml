@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="TaskPaneApp">
+  <Id>2f4a1d72-6b41-4e8e-8e33-7cd2610f2a01</Id>
+  <Version>0.1.0.0</Version>
+  <ProviderName>DX</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="DX Command Center"/>
+  <Description DefaultValue="Run approved DX document-safe actions from Word."/>
+  <IconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://dx-office.example.invalid/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://dx-office.example.invalid/support"/>
+  <AppDomains>
+    <AppDomain>https://dx-office.example.invalid</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="WordApi" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://dx-office.example.invalid/word/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadDocument</Permissions>
+  <VersionOverrides
+    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="DxWordGetStartedTitle"/>
+            <Description resid="DxWordGetStartedDescription"/>
+            <LearnMoreUrl resid="DxWordSupportUrl"/>
+          </GetStarted>
+          <FunctionFile resid="DxWordTaskpaneUrl"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="DxWordCommandCenterGroup">
+                <Label resid="DxWordGroupLabel"/>
+                <Icon>
+                  <bt:Image size="16" resid="DxWordIcon16"/>
+                  <bt:Image size="32" resid="DxWordIcon32"/>
+                  <bt:Image size="80" resid="DxWordIcon80"/>
+                </Icon>
+                <Control xsi:type="Button" id="DxWordCommandCenterButton">
+                  <Label resid="DxWordButtonLabel"/>
+                  <Supertip>
+                    <Title resid="DxWordButtonLabel"/>
+                    <Description resid="DxWordButtonDescription"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="DxWordIcon16"/>
+                    <bt:Image size="32" resid="DxWordIcon32"/>
+                    <bt:Image size="80" resid="DxWordIcon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DxWordCommandCenterTaskpane</TaskpaneId>
+                    <SourceLocation resid="DxWordTaskpaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="DxWordIcon16" DefaultValue="https://dx-office.example.invalid/assets/icon-16.png"/>
+        <bt:Image id="DxWordIcon32" DefaultValue="https://dx-office.example.invalid/assets/icon-32.png"/>
+        <bt:Image id="DxWordIcon80" DefaultValue="https://dx-office.example.invalid/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="DxWordTaskpaneUrl" DefaultValue="https://dx-office.example.invalid/word/taskpane.html"/>
+        <bt:Url id="DxWordSupportUrl" DefaultValue="https://dx-office.example.invalid/support"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="DxWordGroupLabel" DefaultValue="DX"/>
+        <bt:String id="DxWordButtonLabel" DefaultValue="DX Command Center"/>
+        <bt:String id="DxWordGetStartedTitle" DefaultValue="DX Command Center"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="DxWordButtonDescription" DefaultValue="Open DX document-safe actions."/>
+        <bt:String id="DxWordGetStartedDescription" DefaultValue="Open the DX task pane from the Home ribbon."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

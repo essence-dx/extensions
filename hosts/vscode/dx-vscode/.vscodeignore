@@ -1,0 +1,9 @@
+src/**
+tests/**
+tsconfig.json
+dx.extension.toml
+package-lock.json
+dist/**/*.map
+*.vsix
+*.sha256
+.vscode-test/**

@@ -1,0 +1,110 @@
+schema = "dx.extension.manifest"
+manifest_version = 1
+
+[extension]
+id = "dx.zed.command-center"
+name = "DX Zed Command Center"
+publisher = "DX"
+version = "0.1.0"
+description = "Official Zed slash-command extension for DX status, assets, and receipt metadata."
+license = "MIT"
+official = true
+
+[compatibility]
+dx_min = "0.1.0"
+hosts = ["zed"]
+platforms = ["windows", "macos", "linux"]
+architectures = ["wasm32", "x86_64", "aarch64"]
+
+[entrypoint]
+transport = "http"
+command = "dx-local-service"
+args = []
+cwd = "${host.worktree}"
+startup_timeout_ms = 90000
+shutdown_timeout_ms = 2000
+
+[transport]
+protocol = "dx-host-action"
+framing = "json"
+encoding = "utf8"
+max_message_bytes = 1048576
+heartbeat_interval_ms = 0
+supports_cancel = false
+
+[security]
+trust = "host-user-approved"
+signature = "development-unsigned"
+sandbox = "zed-wasm-extension"
+network = "deny-by-default"
+secrets = "none"
+redaction = "metadata-only"
+stores_payloads = false
+stores_process_output = false
+
+[[capabilities]]
+id = "zed.slash_commands"
+required = true
+scope = ["assistant"]
+reason = "Expose DX command-plan metadata through Zed Assistant slash commands."
+
+[[capabilities]]
+id = "local_service.connect"
+required = true
+scope = ["dx-local-service"]
+reason = "Connect to DX for asset and status requests when the service bridge is configured."
+
+[[capabilities]]
+id = "receipts.read"
+required = true
+scope = [".dx/receipts"]
+reason = "Expose existing DX receipt metadata from the Zed slash-command surface."
+
+[[host_actions]]
+id = "dx.zed.show_status"
+group = "status"
+label = "Show DX Status"
+description = "Render DX status in Zed when the service bridge is configured."
+operation = "dx.status"
+transport = "local-service"
+input = "none"
+output = "zed-assistant"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["zed.slash_commands", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.zed.search_assets"
+group = "assets"
+label = "Search DX Assets"
+description = "Render DX asset search in Zed when the service bridge is configured."
+operation = "dx.assets.search"
+transport = "local-service"
+input = "text"
+output = "zed-assistant"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["zed.slash_commands", "local_service.connect"]
+
+[[host_actions]]
+id = "dx.zed.show_receipts"
+group = "receipts"
+label = "Show DX Receipts"
+description = "Show DX receipt path metadata from Zed."
+operation = "receipt.showPath"
+transport = "host-ui"
+input = "none"
+output = "zed-assistant"
+risk_level = "low"
+requires_user_approval = false
+writes_receipts = false
+required_capabilities = ["zed.slash_commands", "receipts.read"]
+
+[[receipts]]
+id = "host-action-index"
+schema = "dx.extension.host_action_index"
+latest_path = ".dx/receipts/extensions/dx.zed.command-center/host-action-index-latest.json"
+retention_limit = 20
+metadata_only = true
