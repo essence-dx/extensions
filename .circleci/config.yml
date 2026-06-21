@@ -34,12 +34,12 @@ jobs:
             cargo build --release
             New-Item -ItemType Directory -Path dist -Force | Out-Null
             
-            # Try specific naming to dx-$proj.exe
-            if (Test-Path "target\release\$proj.exe") {
-                Copy-Item -Path "target\release\$proj.exe" -Destination "dist\dx-$proj.exe" -Force
+            # Try specific naming to dx-extensions.exe
+            if (Test-Path "target\release\extensions.exe") {
+                Copy-Item -Path "target\release\extensions.exe" -Destination "dist\dx-extensions.exe" -Force
             }
-            if (Test-Path "target\release\dx-$proj.exe") {
-                Copy-Item -Path "target\release\dx-$proj.exe" -Destination "dist\dx-$proj.exe" -Force
+            if (Test-Path "target\release\dx-extensions.exe") {
+                Copy-Item -Path "target\release\dx-extensions.exe" -Destination "dist\dx-extensions.exe" -Force
             }
             if (Test-Path "target\release\search_cli.exe") {
                 # for metasearch or similar
@@ -74,6 +74,7 @@ workflows:
     when: << pipeline.parameters.release_artifacts >>
     jobs:
       - windows-release
+
 
 
 
